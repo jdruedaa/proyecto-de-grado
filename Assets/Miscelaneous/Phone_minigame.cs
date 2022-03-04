@@ -2,22 +2,27 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
+using UnityEngine.SceneManagement;
 
 public class Phone_minigame : MonoBehaviour
 {
     public bool movement;
     public Vector2 target;
-    public float speed = 2f;
+    public float speed = 20f;
     public Vector2 position;
     public bool hand;
+    public bool act;
+    public static Phone_minigame main_phone;
 
     // Start is called before the first frame update
     void Start()
     {
-        movement = true;
-        target = new Vector2(-10,-10);
+        movement = false;
+        target = new Vector2(-10,0);
         position = gameObject.transform.position;
         hand = false;
+        act = true;
+        Trans_movement();
     }
 
     // Update is called once per frame
@@ -29,7 +34,10 @@ public class Phone_minigame : MonoBehaviour
             RaycastHit2D hit = Physics2D.Raycast(ray.origin, Vector2.zero);
             if (hit.collider != null && hit.collider.tag == gameObject.tag) 
             {
+                if(act)
+                {
                 hand = !hand;
+                }
                 //add hand sprite on top of phone, tal vez usar un tag para que ambos objetos vayan juntos
             }
         }
@@ -52,19 +60,54 @@ public class Phone_minigame : MonoBehaviour
         }
     }
 
-    void OnMouseUp()
-    {
-       if(!hand)
-       {
-           movement = true;
-       }
-    }
-
     void OnMouseDrag()
     {
+        if(act)
+        {
         hand = false;
         Vector3 mousePos = Input.mousePosition;
         mousePos.z = Camera.main.nearClipPlane;
         transform.position = Camera.main.ScreenToWorldPoint(mousePos);
+        }
+    }    
+ 
+    void Awake() 
+    {
+        if(main_phone == null){
+            DontDestroyOnLoad(this.gameObject);
+            main_phone = this;
+        }else{
+            Destroy(this.gameObject);
+        }
+
+    }
+
+    void Trans_movement()
+    {
+        StartCoroutine(WaitMove(10));
+        Movement(1,6);
+    }
+
+    public void Movement(int time, int sped)
+    {
+        StartCoroutine(Waiting(time,sped));
+    }    
+
+    IEnumerator Waiting(int time, int sped)
+    {
+        if(!hand && !movement){
+            this.speed = sped;
+            movement = true;
+            yield return new WaitForSeconds(time);
+            movement = false;
+        }else if(!hand){
+            StartCoroutine(Waiting(time,sped));
+        }
+    }
+
+    IEnumerator WaitMove(int time)
+    {
+        yield return new WaitForSeconds(time);
+        Trans_movement();
     }
 }
