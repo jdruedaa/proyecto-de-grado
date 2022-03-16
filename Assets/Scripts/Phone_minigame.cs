@@ -11,17 +11,25 @@ public class Phone_minigame : MonoBehaviour
     public float speed = 20f;
     public Vector2 position;
     public bool hand;
+    public bool holding;
+    public bool canGrab;
     public bool act;
     public static Phone_minigame main_phone;
+    private Rigidbody2D rgb;
 
     // Start is called before the first frame update
     void Start()
     {
+        transform.position = new Vector2(5,0);
         movement = false;
-        target = new Vector2(-10,0);
+        target = new Vector2(-7,0);
         position = gameObject.transform.position;
         hand = false;
+        holding = false;
+        canGrab = true;
         act = true;
+        rgb = GetComponent<Rigidbody2D>();
+        rgb.constraints = RigidbodyConstraints2D.FreezeRotation;
         Trans_movement();
     }
 
@@ -36,7 +44,7 @@ public class Phone_minigame : MonoBehaviour
             {
                 if(act)
                 {
-                hand = !hand;
+                    hand = !hand;
                 }
                 //add hand sprite on top of phone, tal vez usar un tag para que ambos objetos vayan juntos
             }
@@ -45,31 +53,77 @@ public class Phone_minigame : MonoBehaviour
         {
             float step = speed * Time.deltaTime;
             transform.position = Vector2.MoveTowards(transform.position, target, step);
-            if((Vector2)transform.position == target)
-            {
-                transform.position = new Vector2(0,0);
-            }
         }
         else
         {
             transform.position = Vector2.MoveTowards(transform.position, target, 0);
-            if((Vector2)transform.position == target)
+        }
+    }
+
+
+    void OnCollisionEnter2D(Collision2D col)
+    {
+        if(col.gameObject.tag == "Pants")
+        {
+            canGrab = false;
+            Vector2 point = col.collider.ClosestPoint(transform.position);
+            transform.position = point;
+            canGrab = true;
+        }
+    }
+
+    void OnTriggerEnter2D(Collider2D col)
+    {
+        if(col.gameObject.tag == "Pants")
+        {
+            if(!hand && !holding)
             {
-                transform.position = new Vector2(0,0);
+                Debug.Log("robable");
             }
         }
+        //Signal "stealable" (true)
+    }
+
+    void OnTriggerStay2D(Collider2D col)
+    {
+        if(col.gameObject.tag == "Pants")
+        {
+            if(!hand && !holding)
+            {
+                Debug.Log("robable");
+            }
+        }
+        //Signal "stealable" (true)
+    }
+
+    void OnTriggerExit2D(Collider2D col)
+    {
+        if(col.gameObject.tag == "Pants")
+        {
+            Debug.Log("no robable");
+        }
+        //Remove signal "stealable" (false)
     }
 
     void OnMouseDrag()
     {
         if(act)
         {
-        hand = false;
-        Vector3 mousePos = Input.mousePosition;
-        mousePos.z = Camera.main.nearClipPlane;
-        transform.position = Camera.main.ScreenToWorldPoint(mousePos);
+            if(canGrab)
+            {
+                hand = false;
+                holding = true;
+                Vector3 mousePos = Input.mousePosition;
+                mousePos.z = Camera.main.nearClipPlane;
+                transform.position = Camera.main.ScreenToWorldPoint(mousePos);
+            }
         }
-    }    
+    }   
+
+    void OnMouseUp()
+    {
+        holding = false;
+    } 
  
     void Awake() 
     {
