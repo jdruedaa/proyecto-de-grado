@@ -15,17 +15,21 @@ public class Phone_minigame : MonoBehaviour
     public bool canGrab;
     public bool act;
     public static Phone_minigame main_phone;
+    private Rigidbody2D rgb;
 
     // Start is called before the first frame update
     void Start()
     {
+        transform.position = new Vector2(5,0);
         movement = false;
-        target = new Vector2(-12,0);
+        target = new Vector2(-7,0);
         position = gameObject.transform.position;
         hand = false;
         holding = false;
         canGrab = true;
         act = true;
+        rgb = GetComponent<Rigidbody2D>();
+        rgb.constraints = RigidbodyConstraints2D.FreezeRotation;
         Trans_movement();
     }
 
@@ -59,33 +63,45 @@ public class Phone_minigame : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D col)
     {
-        canGrab = false;
-        Vector2 point = col.collider.ClosestPoint(transform.position);
-        transform.position = point;
-        canGrab = true;
+        if(col.gameObject.tag == "Pants")
+        {
+            canGrab = false;
+            Vector2 point = col.collider.ClosestPoint(transform.position);
+            transform.position = point;
+            canGrab = true;
+        }
     }
 
     void OnTriggerEnter2D(Collider2D col)
     {
-        if(!hand && !holding)
+        if(col.gameObject.tag == "Pants")
         {
-            Debug.Log("robable");
+            if(!hand && !holding)
+            {
+                Debug.Log("robable");
+            }
         }
         //Signal "stealable" (true)
     }
 
     void OnTriggerStay2D(Collider2D col)
     {
-        if(!hand && !holding)
+        if(col.gameObject.tag == "Pants")
         {
-            Debug.Log("robable");
+            if(!hand && !holding)
+            {
+                Debug.Log("robable");
+            }
         }
         //Signal "stealable" (true)
     }
 
     void OnTriggerExit2D(Collider2D col)
     {
-        Debug.Log("no robable");
+        if(col.gameObject.tag == "Pants")
+        {
+            Debug.Log("no robable");
+        }
         //Remove signal "stealable" (false)
     }
 

@@ -216,16 +216,15 @@ GameObject:
   m_Component:
   - component: {fileID: 669822387}
   - component: {fileID: 669822386}
-  - component: {fileID: 669822388}
-  - component: {fileID: 669822389}
   - component: {fileID: 669822393}
   - component: {fileID: 669822392}
   - component: {fileID: 669822391}
   - component: {fileID: 669822390}
   - component: {fileID: 669822394}
+  - component: {fileID: 669822388}
   m_Layer: 0
   m_Name: Jean_Background-1.png (1)
-  m_TagString: Untagged
+  m_TagString: Pants
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -295,59 +294,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!68 &669822388
-EdgeCollider2D:
+--- !u!114 &669822388
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 669822385}
-  m_Enabled: 0
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_EdgeRadius: 0
-  m_Points:
-  - {x: -3.9028397, y: 1.6072448}
-  - {x: 3.0000265, y: 1.5871688}
-  - {x: 3.8636446, y: 1.4378484}
-  - {x: 4.5304775, y: 1.2776183}
-  - {x: 4.673897, y: 1.070448}
-  - {x: 4.695962, y: 0.16691482}
-  - {x: 4.7290998, y: -1.0246485}
-  - {x: 4.505808, y: -1.3010119}
-  - {x: 4.1166773, y: -1.4152238}
-  - {x: 3.0238602, y: -1.5999231}
-  - {x: -3.9135163, y: -1.6014928}
-  m_AdjacentStartPoint: {x: 0, y: 0}
-  m_AdjacentEndPoint: {x: 0, y: 0}
-  m_UseAdjacentStartPoint: 0
-  m_UseAdjacentEndPoint: 0
---- !u!68 &669822389
-EdgeCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 669822385}
-  m_Enabled: 0
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_EdgeRadius: 0
-  m_Points:
-  - {x: -5.9637833, y: 1.8639858}
-  - {x: -5.951033, y: -1.9415828}
-  m_AdjacentStartPoint: {x: 0, y: 0}
-  m_AdjacentEndPoint: {x: 0, y: 0}
-  m_UseAdjacentStartPoint: 0
-  m_UseAdjacentEndPoint: 0
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfabfc9346b34134996e4f05056256ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!61 &669822390
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -439,7 +397,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.7376995, y: -5.764553}
+  m_Offset: {x: -0.7376995, y: -5.919225}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -450,7 +408,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 28.4049, y: 8.769386}
+  m_Size: {x: 28.4049, y: 8.460042}
   m_EdgeRadius: 0
 --- !u!61 &669822394
 BoxCollider2D:
@@ -1111,6 +1069,7 @@ MonoBehaviour:
   speed: 15
   position: {x: 0, y: 0}
   hand: 0
+  holding: 0
   canGrab: 0
   act: 0
 --- !u!212 &1879720429
