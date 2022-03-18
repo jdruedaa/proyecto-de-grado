@@ -36,6 +36,19 @@ public class SliderManager : MonoBehaviour
         if(sl.value >= 100)
         {
             SceneManager.LoadScene("Game Over");
+            var go = new GameObject("first");
+            DontDestroyOnLoad(go);
+            foreach(var root in go.scene.GetRootGameObjects())
+            {
+                if(root.tag == "Admin")
+                {
+
+                }
+                else
+                {
+                    Destroy(root);
+                }
+            }
         }
     }
 
@@ -47,20 +60,40 @@ public class SliderManager : MonoBehaviour
 
     void FixedUpdate()
     {
-        if(!GameManager.intro){
-            moveSlider(0.1f * Time.deltaTime);
+        if(!GameManager.intro)
+        {
+            if(GameManager.handSlider)
+            {
+                moveSlider(0.11f * Time.deltaTime);
+            }
+            else
+            {
+                moveSlider(0.5f * Time.deltaTime);
+            }
         }
-        if(value >= 10f && !active){
+        if(value >= 50f && !active){
             Debug.Log("midway");
             ChangeSong();
             active = true;
         }
         float currentTime = Time.time;
         timer = currentTime - prevTime;
-        prevTime = currentTime;
-        if(timer >= 900f)
+        if(timer >= 600f)
         {
             SceneManager.LoadScene("Congratulations");
+            var go = new GameObject("first");
+            DontDestroyOnLoad(go);
+            foreach(var root in go.scene.GetRootGameObjects())
+            {
+                if(root.tag == "Admin")
+                {
+
+                }
+                else
+                {
+                    Destroy(root);
+                }
+            }
         }
     }
 

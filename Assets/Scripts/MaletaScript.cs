@@ -5,10 +5,12 @@ using UnityEngine.SceneManagement;
 
 public class MaletaScript : MonoBehaviour
 {
+    public static float timeStart;
     // Start is called before the first frame update
     void Start()
     {
         this.GetComponent<Rigidbody2D>().velocity = new Vector2(-1.5f, -0.1f);
+        timeStart = Time.time + 2f;
     }
 
     // Update is called once per frame
@@ -23,6 +25,5 @@ public class MaletaScript : MonoBehaviour
     void OnMouseDown()
     {
         SceneManager.LoadScene("Backpack minigame");
-        //Ponerle el timer a backpack minigame.cs
     }
 }
