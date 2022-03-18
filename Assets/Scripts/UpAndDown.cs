@@ -9,8 +9,6 @@ public class UpAndDown : MonoBehaviour
     private Vector3 go_sp;
     private bool pegarSalto = false;
     private bool volando = false;
-    public GameObject sm;
-    private SliderManager smm;
     private float tiempo;
 
     void Start()
@@ -18,7 +16,7 @@ public class UpAndDown : MonoBehaviour
         tiempo = Time.time;
         _startPosition = transform.position;
         go_sp = go.transform.position;
-        smm = sm.GetComponent<SliderManager>();
+        go = CharacterScript.charact.gameObject;
     }
 
     void FixedUpdate()
@@ -37,7 +35,6 @@ public class UpAndDown : MonoBehaviour
             }
             else if (transform.position.y > 4.4f)
             {
-                smm.moveSlider(5f);
                 transform.position += new Vector3(0f, -Time.deltaTime*3, 0f);
                 go.transform.position += new Vector3(0f, -Time.deltaTime*3, 0f);
                 volando = false;

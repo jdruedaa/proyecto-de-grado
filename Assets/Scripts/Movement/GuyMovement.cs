@@ -6,6 +6,7 @@ public class GuyMovement : MonoBehaviour
 {
     public Sprite newSprite;
     public Sprite sinMaleta;
+    public static GuyMovement guy;
     private bool b = true;
     float tiempo;
     private bool maleta;

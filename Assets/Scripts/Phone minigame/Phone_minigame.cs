@@ -8,7 +8,7 @@ public class Phone_minigame : MonoBehaviour
 {
     public bool movement;
     public Vector2 target;
-    public float speed = 20f;
+    public float speed = 0.1f;
     public Vector2 position;
     public bool hand;
     public bool holding;
@@ -36,11 +36,15 @@ public class Phone_minigame : MonoBehaviour
         steal = false;
         stolen = false;
         Trans_movement();
+        Vibration();
     }
 
     // Update is called once per frame
     void Update()
     {
+        if(hand){
+            SliderManager.bar.moveSlider(0.5f * Time.deltaTime);
+        }
         if(Input.GetMouseButtonDown(1))
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -166,8 +170,16 @@ public class Phone_minigame : MonoBehaviour
 
     void Trans_movement()
     {
-        StartCoroutine(WaitMove(10));
-        Movement(1,3);
+        StartCoroutine(WaitMove(15));
+        Movement(3,2);
+    }
+
+    void Vibration()
+    {
+        if(!hand && !holding){
+            StartCoroutine(WaitVib(2));
+        }
+        Movement(1,1);
     }
 
     public void Movement(int time, int sped)
@@ -177,13 +189,12 @@ public class Phone_minigame : MonoBehaviour
 
     IEnumerator Waiting(int time, int sped)
     {
-        if(!hand && !movement){
-            this.speed = sped;
+        if(!hand && !GameManager.intro){
+            yield return new WaitUntil(() => movement == false);
             movement = true;
+            this.speed = sped;
             yield return new WaitForSeconds(time);
             movement = false;
-        }else if(!hand){
-            StartCoroutine(Waiting(time,sped));
         }
     }
 
@@ -191,6 +202,12 @@ public class Phone_minigame : MonoBehaviour
     {
         yield return new WaitForSeconds(time);
         Trans_movement();
+    }
+
+    IEnumerator WaitVib(int time)
+    {
+        yield return new WaitForSeconds(time);
+        Vibration();
     }
 
     void StealAttempt()
