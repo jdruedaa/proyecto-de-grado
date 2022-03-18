@@ -8,7 +8,11 @@ public class SliderManager : MonoBehaviour
 {
     public static SliderManager bar;
     public static float value;
+    public AudioSource song;
+    public AudioClip passive;
+    public AudioClip tense;
     public GameObject slider;
+    public bool active;
     Slider sl;
     public Text texto;
     public float timer;
@@ -19,6 +23,8 @@ public class SliderManager : MonoBehaviour
         sl = slider.GetComponent<Slider>();
         timer = 0;
         prevTime = Time.time;
+        song.Play();
+        active = false;
     }
     public void moveSlider(float f)
     {
@@ -32,10 +38,22 @@ public class SliderManager : MonoBehaviour
             SceneManager.LoadScene("Game Over");
         }
     }
+
+    void ChangeSong()
+    {
+        song.clip = tense;
+        song.Play();
+    }
+
     void FixedUpdate()
     {
         if(!GameManager.intro){
             moveSlider(0.1f * Time.deltaTime);
+        }
+        if(value >= 10f && !active){
+            Debug.Log("midway");
+            ChangeSong();
+            active = true;
         }
         float currentTime = Time.time;
         timer = currentTime - prevTime;
