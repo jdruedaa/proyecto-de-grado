@@ -14,6 +14,7 @@ public class Phone_minigame : MonoBehaviour
     public bool holding;
     public bool canGrab;
     public bool act;
+    public bool targetReached;
     public static Phone_minigame main_phone;
     private Rigidbody2D rgb;
     public bool steal;
@@ -31,6 +32,7 @@ public class Phone_minigame : MonoBehaviour
         holding = false;
         canGrab = true;
         act = true;
+        targetReached = false;
         rgb = GetComponent<Rigidbody2D>();
         rgb.constraints = RigidbodyConstraints2D.FreezeRotation;
         steal = false;
@@ -101,6 +103,7 @@ public class Phone_minigame : MonoBehaviour
                 steal = true;
                 Debug.Log("Robable");
             }
+            targetReached = true;
         }
     }
 
@@ -133,6 +136,7 @@ public class Phone_minigame : MonoBehaviour
             stealAttemptTime = Time.time + 5f;
             steal = false;
             Debug.Log("No Robable");
+            targetReached = false;
         }
     }
 
@@ -176,7 +180,7 @@ public class Phone_minigame : MonoBehaviour
 
     void Vibration()
     {
-        if(!hand && !holding){
+        if(!hand && !holding && !targetReached){
             StartCoroutine(WaitVib(2));
         }
         Movement(1,1);
@@ -215,7 +219,6 @@ public class Phone_minigame : MonoBehaviour
         if(Random.Range(0,100) <= 60)
         {
             Debug.Log("Celular Robado D:");
-            //mejor mandar señal a otro lado de que se robaron el celular?
             GameManager.phoneStolen = true;
             Destroy(gameObject);
         }

@@ -137,7 +137,7 @@ GameObject:
   - component: {fileID: 92453997}
   - component: {fileID: 92453996}
   - component: {fileID: 92453995}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Piso
   m_TagString: Piso
   m_Icon: {fileID: 0}
@@ -326,7 +326,7 @@ GameObject:
   - component: {fileID: 731362993}
   - component: {fileID: 731362992}
   - component: {fileID: 731362995}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Mochila
   m_TagString: Maleta
   m_Icon: {fileID: 0}
@@ -388,7 +388,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 84a38dbde62155c498666320c544cfeb, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -426,7 +426,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 486fb6eae05b1cb4897db9f8277fe253, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  colliderMaleta: {fileID: 0}
+  contadorItems: 0
+  exitSprite: {fileID: 21300000, guid: aaf5ca28b4d373440a6185c5f65ade5a, type: 3}
 --- !u!1 &1401193587
 GameObject:
   m_ObjectHideFlags: 0
@@ -440,7 +441,7 @@ GameObject:
   - component: {fileID: 1401193588}
   - component: {fileID: 1401193591}
   - component: {fileID: 1401193592}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: red-book
   m_TagString: ItemMaleta
   m_Icon: {fileID: 0}
@@ -512,7 +513,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: f43319cbe9d0bd5439f3b46f68ede325, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -552,6 +553,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canGrab: 0
   save: 0
+  identifier: 0
 --- !u!50 &1401193592
 Rigidbody2D:
   serializedVersion: 4
@@ -586,7 +588,7 @@ GameObject:
   - component: {fileID: 1504328394}
   - component: {fileID: 1504328397}
   - component: {fileID: 1504328398}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Blue Book
   m_TagString: ItemMaleta
   m_Icon: {fileID: 0}
@@ -658,7 +660,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 9871f2bf5d61b2e488c227b294fd80c5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -698,6 +700,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canGrab: 0
   save: 0
+  identifier: 0
 --- !u!50 &1504328398
 Rigidbody2D:
   serializedVersion: 4
@@ -815,7 +818,7 @@ GameObject:
   - component: {fileID: 1511771592}
   - component: {fileID: 1511771595}
   - component: {fileID: 1511771596}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Keys
   m_TagString: ItemMaleta
   m_Icon: {fileID: 0}
@@ -877,7 +880,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 68d5f1955e5706f4b88c7d213354ef68, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -917,6 +920,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canGrab: 0
   save: 0
+  identifier: 0
 --- !u!50 &1511771596
 Rigidbody2D:
   serializedVersion: 4
@@ -951,7 +955,7 @@ GameObject:
   - component: {fileID: 1724480064}
   - component: {fileID: 1724480065}
   - component: {fileID: 1724480066}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: TabletTurnedOff
   m_TagString: ItemMaleta
   m_Icon: {fileID: 0}
@@ -997,7 +1001,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 0e6efc2d8fdaea742b49d876be614e84, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -1063,6 +1067,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canGrab: 0
   save: 0
+  identifier: 0
 --- !u!50 &1724480066
 Rigidbody2D:
   serializedVersion: 4
@@ -1097,7 +1102,7 @@ GameObject:
   - component: {fileID: 1745448077}
   - component: {fileID: 1745448080}
   - component: {fileID: 1745448081}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: green-book.png
   m_TagString: ItemMaleta
   m_Icon: {fileID: 0}
@@ -1169,7 +1174,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: c267b5081c9274e41b76502781a53531, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -1209,6 +1214,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canGrab: 0
   save: 0
+  identifier: 0
 --- !u!50 &1745448081
 Rigidbody2D:
   serializedVersion: 4
