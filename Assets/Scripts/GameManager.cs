@@ -41,5 +41,19 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
+    public void Reset()
+    {
+        phoneStolen = false;
+        intro = true;
+        maletaDown = false;
+        itemsMaleta = new bool[5];
+        int i = 0;
+        while(i < itemsMaleta.Length)
+        {
+            itemsMaleta[i] = true;
+            i++;
+        }
+    }
 }
 

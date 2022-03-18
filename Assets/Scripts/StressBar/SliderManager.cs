@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class SliderManager : MonoBehaviour
 {
@@ -21,6 +22,10 @@ public class SliderManager : MonoBehaviour
         if(sl != null){
             sl.value += f;
             texto.text = string.Format("Nivel de estrés {0}/100", Mathf.Floor(sl.value));
+        }
+        if(sl.value >= 100)
+        {
+            SceneManager.LoadScene("Game Over");
         }
     }
     void FixedUpdate()
