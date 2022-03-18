@@ -14,7 +14,7 @@ public class ÑeroMovement : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         
         if(transform.position.x >=-2.8f && b)

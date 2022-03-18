@@ -5,17 +5,28 @@ using UnityEngine;
 public class GuyMovement : MonoBehaviour
 {
     public Sprite newSprite;
+    public Sprite sinMaleta;
     private bool b = true;
+    float tiempo;
+    private bool maleta;
+    public GameObject mlta;
     // Start is called before the first frame update
     void Start()
     {
-        
+        tiempo = Time.time;
     }
 
     // Update is called once per frame
-    void Update()
-    {   
-        if(transform.position.x >=-0.0f && b)
+    void FixedUpdate()
+    {
+        float t2 = (Time.time - tiempo) % 20;
+        if (t2 > 19.5f && t2 < 20 && !maleta)
+        {
+            maleta = true;
+            this.GetComponent<SpriteRenderer>().sprite = sinMaleta;
+            mlta.SetActive(true);
+        }
+        if (transform.position.x >=-0.0f && b)
         {
             this.GetComponent<Animator>().enabled = false;
             this.GetComponent<SpriteRenderer>().sprite = newSprite;

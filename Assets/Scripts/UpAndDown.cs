@@ -11,17 +11,20 @@ public class UpAndDown : MonoBehaviour
     private bool volando = false;
     public GameObject sm;
     private SliderManager smm;
+    private float tiempo;
 
     void Start()
     {
+        tiempo = Time.time;
         _startPosition = transform.position;
         go_sp = go.transform.position;
         smm = sm.GetComponent<SliderManager>();
     }
 
-    void Update()
+    void FixedUpdate()
     {
-        if (Input.GetMouseButton(0))
+        float t2 = (Time.time - tiempo) % 15;
+        if (t2 > 14.5f && t2 < 15)
         {
             pegarSalto = true;
         }
@@ -52,12 +55,8 @@ public class UpAndDown : MonoBehaviour
         }
         else
         {
-            transform.position = _startPosition + new Vector3(0.0f, Mathf.Sin(Time.time * 3) * 0.25f, 0.0f);
-            go.transform.position = go_sp + new Vector3(0.0f, Mathf.Sin(Time.time * 3) * 0.25f, 0.0f);
+            transform.position = _startPosition + new Vector3(0.0f, Mathf.Sin(Time.time * 2f) * 0.1f, 0.0f);
+            go.transform.position = go_sp + new Vector3(0.0f, Mathf.Sin(Time.time * 2f) * 0.1f, 0.0f);
         }
-    }
-    public void saltar()
-    {
-        pegarSalto = true;
     }
 }

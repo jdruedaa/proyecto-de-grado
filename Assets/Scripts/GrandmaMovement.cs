@@ -12,7 +12,7 @@ public class GrandmaMovement : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         
         if(transform.position.x <=16.0f)

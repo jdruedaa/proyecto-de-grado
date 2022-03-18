@@ -16,9 +16,9 @@ public class SliderManager : MonoBehaviour
     public void moveSlider(float f)
     {
         sl.value += f;
-        texto.text = string.Format("Nivel de estrés {0}/100", Mathf.Floor(sl.value));
+        texto.text = string.Format("Nivel de estrÃ©s {0}/100", Mathf.Floor(sl.value));
     }
-    void Update()
+    void FixedUpdate()
     {
         moveSlider(0.5f * Time.deltaTime);
     }

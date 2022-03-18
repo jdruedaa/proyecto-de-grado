@@ -14,7 +14,7 @@ public class WomanMovement : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         
         if(transform.position.x >=7.2f && b)

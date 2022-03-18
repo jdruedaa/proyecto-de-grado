@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class bgtrasform : MonoBehaviour
 {
-    void Update()
+    void FixedUpdate()
     {
         if (transform.position.x <= -69f)
         {
