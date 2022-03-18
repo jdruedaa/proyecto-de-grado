@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Phone
   - Pants
+  - Maleta
+  - Piso
+  - ItemMaleta
   layers:
   - Default
   - TransparentFX

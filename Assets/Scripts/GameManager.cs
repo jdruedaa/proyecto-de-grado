@@ -7,11 +7,19 @@ public class GameManager : MonoBehaviour
     public static bool phoneStolen;
     public static bool intro;
     public static GameManager instance;
+    public static bool[] itemsMaleta;
 
     void Start()
     {
         phoneStolen = false;
         intro = true;
+        itemsMaleta = new bool[5];
+        int i = 0;
+        while(i < itemsMaleta.Length)
+        {
+            itemsMaleta[i] = true;
+            i++;
+        }
     }
 
     void Update()
