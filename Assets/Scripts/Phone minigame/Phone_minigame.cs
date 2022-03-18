@@ -16,6 +16,9 @@ public class Phone_minigame : MonoBehaviour
     public bool act;
     public static Phone_minigame main_phone;
     private Rigidbody2D rgb;
+    public bool steal;
+    public float stealAttemptTime;
+    public bool stolen;
 
     // Start is called before the first frame update
     void Start()
@@ -30,6 +33,8 @@ public class Phone_minigame : MonoBehaviour
         act = true;
         rgb = GetComponent<Rigidbody2D>();
         rgb.constraints = RigidbodyConstraints2D.FreezeRotation;
+        steal = false;
+        stolen = false;
         Trans_movement();
     }
 
@@ -47,6 +52,16 @@ public class Phone_minigame : MonoBehaviour
                     hand = !hand;
                 }
                 //add hand sprite on top of phone, tal vez usar un tag para que ambos objetos vayan juntos
+            }
+        }
+        if(steal)
+        {
+            Debug.Log("Time: " + Time.time);
+            Debug.Log("steal attempt:" + stealAttemptTime);
+            if(Time.time >= stealAttemptTime)
+            {
+                StealAttempt();
+                stealAttemptTime = Time.time + 5f;
             }
         }
         if(movement && !hand)
@@ -78,10 +93,11 @@ public class Phone_minigame : MonoBehaviour
         {
             if(!hand && !holding)
             {
-                Debug.Log("robable");
+                stealAttemptTime = Time.time + 10f;
+                steal = true;
+                Debug.Log("Robable");
             }
         }
-        //Signal "stealable" (true)
     }
 
     void OnTriggerStay2D(Collider2D col)
@@ -90,19 +106,30 @@ public class Phone_minigame : MonoBehaviour
         {
             if(!hand && !holding)
             {
-                Debug.Log("robable");
+                if(!steal)
+                {
+                    stealAttemptTime = Time.time + 5f;
+                    steal = true;
+                    Debug.Log("Robable");
+                }
+            }
+            else
+            {
+                stealAttemptTime = Time.time + 5f;
+                steal = false;
+                Debug.Log("No Robable");
             }
         }
-        //Signal "stealable" (true)
     }
 
     void OnTriggerExit2D(Collider2D col)
     {
         if(col.gameObject.tag == "Pants")
         {
-            Debug.Log("no robable");
+            stealAttemptTime = Time.time + 5f;
+            steal = false;
+            Debug.Log("No Robable");
         }
-        //Remove signal "stealable" (false)
     }
 
     void OnMouseDrag()
@@ -127,11 +154,12 @@ public class Phone_minigame : MonoBehaviour
  
     void Awake() 
     {
-        if(main_phone == null){
-            DontDestroyOnLoad(this.gameObject);
+        stolen = GameManager.phoneStolen;
+        if(main_phone == null && !stolen){
+            DontDestroyOnLoad(gameObject);
             main_phone = this;
         }else{
-            Destroy(this.gameObject);
+            Destroy(gameObject);
         }
 
     }
@@ -139,7 +167,7 @@ public class Phone_minigame : MonoBehaviour
     void Trans_movement()
     {
         StartCoroutine(WaitMove(10));
-        Movement(1,6);
+        Movement(1,3);
     }
 
     public void Movement(int time, int sped)
@@ -163,5 +191,20 @@ public class Phone_minigame : MonoBehaviour
     {
         yield return new WaitForSeconds(time);
         Trans_movement();
+    }
+
+    void StealAttempt()
+    {
+        if(Random.Range(0,100) <= 60)
+        {
+            Debug.Log("Celular Robado D:");
+            //mejor mandar señal a otro lado de que se robaron el celular?
+            GameManager.phoneStolen = true;
+            Destroy(gameObject);
+        }
+        else
+        {
+            Debug.Log("Intento de robo fallido");
+        }
     }
 }
