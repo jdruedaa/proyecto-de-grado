@@ -11,10 +11,14 @@ public class SliderManager : MonoBehaviour
     public GameObject slider;
     Slider sl;
     public Text texto;
+    public float timer;
+    public float prevTime;
 
     void Start()
     {
         sl = slider.GetComponent<Slider>();
+        timer = 0;
+        prevTime = Time.time;
     }
     public void moveSlider(float f)
     {
@@ -32,6 +36,13 @@ public class SliderManager : MonoBehaviour
     {
         if(!GameManager.intro){
             moveSlider(0.1f * Time.deltaTime);
+        }
+        float currentTime = Time.time;
+        timer = currentTime - prevTime;
+        prevTime = currentTime;
+        if(timer >= 900f)
+        {
+            SceneManager.LoadScene("Congratulations");
         }
     }
 
