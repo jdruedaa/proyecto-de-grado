@@ -26,6 +26,7 @@ public class Exit_pants : MonoBehaviour
         CharacterScript.charact.gameObject.transform.GetChild(1).GetComponent<SpriteRenderer>().enabled = false;
         CharacterScript.charact.gameObject.transform.GetChild(2).GetComponent<SpriteRenderer>().enabled = false;
         CharacterScript.charact.gameObject.transform.GetChild(3).GetComponent<SpriteRenderer>().enabled = false;
+        CharacterScript.charact.gameObject.transform.GetChild(4).GetComponent<SpriteRenderer>().enabled = false;
     }
 
     //If your mouse hovers over the GameObject with the script attached, output this message
