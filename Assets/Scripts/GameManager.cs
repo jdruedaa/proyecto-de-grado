@@ -6,10 +6,18 @@ public class GameManager : MonoBehaviour
 {
     public static bool phoneStolen;
     public static GameManager instance;
+    public static bool[] itemsMaleta;
 
     void Start()
     {
         phoneStolen = false;
+        itemsMaleta = new bool[5];
+        int i = 0;
+        while(i < itemsMaleta.Length)
+        {
+            itemsMaleta[i] = true;
+            i++;
+        }
     }
 
     void Update()

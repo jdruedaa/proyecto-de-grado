@@ -56,10 +56,10 @@ public class Phone_minigame : MonoBehaviour
         }
         if(steal)
         {
-            Debug.Log("Time: " + Time.time);
-            Debug.Log("steal attempt:" + stealAttemptTime);
             if(Time.time >= stealAttemptTime)
             {
+                Debug.Log(Time.time);
+                Debug.Log("steal attempt:" + stealAttemptTime);
                 StealAttempt();
                 stealAttemptTime = Time.time + 5f;
             }
