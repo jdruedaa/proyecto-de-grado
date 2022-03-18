@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class ÑeroMovement : MonoBehaviour
 {
+
+    private bool b = true;
     public Sprite newSprite;
     // Start is called before the first frame update
     void Start()
@@ -12,16 +14,16 @@ public class ÑeroMovement : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        
-        if(transform.position.x >=-2.8f)
+        if(transform.position.x >=-2.8f && b)
         {
             this.GetComponent<Animator>().enabled = false;
             this.GetComponent<SpriteRenderer>().sprite = newSprite;
-            transform.position = new Vector3(-2.73f,-0.69f,0f);
+            transform.position = new Vector3(-2.73f,-0.9f,0f);
+            b = false;
         }
-        else {
+        else if(b) {
             Vector3 movement = new Vector3(2.75f * Time.deltaTime, 0, 0);
             transform.Translate(movement);
         }

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class StressBar : MonoBehaviour
 {
+
     // Start is called before the first frame update
     void Start()
     {
@@ -11,7 +12,7 @@ public class StressBar : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         
     }
