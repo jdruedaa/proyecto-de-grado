@@ -56,6 +56,7 @@ public class Phone_minigame : MonoBehaviour
                 if(act)
                 {
                     hand = !hand;
+                    GameManager.handSlider = hand;
                 }
                 //add hand sprite on top of phone, tal vez usar un tag para que ambos objetos vayan juntos
             }

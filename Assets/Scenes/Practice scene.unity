@@ -218,7 +218,7 @@ GameObject:
   - component: {fileID: 976973701}
   - component: {fileID: 976973700}
   - component: {fileID: 976973703}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: meter_bar_holder_center-repeating_blue
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -341,7 +341,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1046465534}
   - component: {fileID: 1046465535}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: meter_bar_holder_left_edge_blue
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -423,7 +423,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1091238887}
   - component: {fileID: 1091238888}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: meter_bar_holder_right_edge_blue
   m_TagString: Untagged
   m_Icon: {fileID: 0}

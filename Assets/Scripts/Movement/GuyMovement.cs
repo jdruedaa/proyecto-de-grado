@@ -7,6 +7,7 @@ public class GuyMovement : MonoBehaviour
     public Sprite newSprite;
     public Sprite sinMaleta;
     public static GuyMovement guy;
+    public bool drop;
     private bool b = true;
     float tiempo;
     float tiempo2;
@@ -16,11 +17,17 @@ public class GuyMovement : MonoBehaviour
     void Start()
     {
         tiempo = Time.time;
+        drop = false;
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
+        if(drop)
+        {
+            GameManager.maletaDown = true;
+            mlta.SetActive(true);
+        }
         float t2 = (Time.time - tiempo) % 120;
         if (t2 > 119.5f && t2 < 120 && !maleta)
         {

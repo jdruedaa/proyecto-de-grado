@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class SliderManager : MonoBehaviour
 {
@@ -14,10 +15,14 @@ public class SliderManager : MonoBehaviour
     public bool active;
     Slider sl;
     public Text texto;
+    public float timer;
+    public float prevTime;
 
     void Start()
     {
         sl = slider.GetComponent<Slider>();
+        timer = 0;
+        prevTime = Time.time;
         song.Play();
         active = false;
     }
@@ -27,6 +32,23 @@ public class SliderManager : MonoBehaviour
         if(sl != null){
             sl.value += f;
             texto.text = string.Format("Nivel de estrés {0}/100", Mathf.Floor(sl.value));
+        }
+        if(sl.value >= 100)
+        {
+            SceneManager.LoadScene("Game Over");
+            var go = new GameObject("first");
+            DontDestroyOnLoad(go);
+            foreach(var root in go.scene.GetRootGameObjects())
+            {
+                if(root.tag == "Admin")
+                {
+
+                }
+                else
+                {
+                    Destroy(root);
+                }
+            }
         }
     }
 
@@ -38,13 +60,40 @@ public class SliderManager : MonoBehaviour
 
     void FixedUpdate()
     {
-        if(!GameManager.intro){
-            moveSlider(0.1f * Time.deltaTime);
+        if(!GameManager.intro)
+        {
+            if(GameManager.handSlider)
+            {
+                moveSlider(0.11f * Time.deltaTime);
+            }
+            else
+            {
+                moveSlider(0.5f * Time.deltaTime);
+            }
         }
-        if(value >= 10f && !active){
+        if(value >= 50f && !active){
             Debug.Log("midway");
             ChangeSong();
             active = true;
+        }
+        float currentTime = Time.time;
+        timer = currentTime - prevTime;
+        if(timer >= 600f)
+        {
+            SceneManager.LoadScene("Congratulations");
+            var go = new GameObject("first");
+            DontDestroyOnLoad(go);
+            foreach(var root in go.scene.GetRootGameObjects())
+            {
+                if(root.tag == "Admin")
+                {
+
+                }
+                else
+                {
+                    Destroy(root);
+                }
+            }
         }
     }
 

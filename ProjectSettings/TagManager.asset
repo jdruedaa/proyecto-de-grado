@@ -9,6 +9,7 @@ TagManager:
   - Maleta
   - Piso
   - ItemMaleta
+  - Admin
   layers:
   - Default
   - TransparentFX
@@ -16,9 +17,9 @@ TagManager:
   - 
   - Water
   - UI
+  - bolsillo
   - bus
   - maleta
-  - bolsillo
   - 
   - 
   - 
