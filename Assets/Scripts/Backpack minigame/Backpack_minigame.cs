@@ -12,7 +12,8 @@ public class Backpack_minigame : MonoBehaviour
     public bool[] itemsVivos;
     public float timeStart;
     public Text texto;
-    public static Backpack_minigame newMe;
+    public float restante;
+    public bool timerIsRunning;
     //public CapsuleCollider2D colliderMaleta;
     /*public gameObject tablet;
     public gameObject redBook;
@@ -22,7 +23,6 @@ public class Backpack_minigame : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        newMe = this;
         contadorItems = 0;
         int i = 0;
         bool[] items = GameManager.itemsMaleta;
@@ -36,7 +36,9 @@ public class Backpack_minigame : MonoBehaviour
             }
             i++;
         }
-        timeStart = MaletaScript.timeStart;
+        timeStart = CharacterScript.charact.gameObject.transform.GetChild(4).GetComponent<MaletaScript>().timeStart;
+        timerIsRunning = true;
+        restante = 90f - (Time.time - timeStart);
         //colliderMaleta = GetComponent<CapsuleCollider2D>();
         /*cuando hagamos posiciones random debe instanciar
         //items = GameManager.itemsMaleta();
@@ -48,20 +50,39 @@ public class Backpack_minigame : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float cambio = Time.time - timeStart;
-        float restante = 90f - cambio;
-        texto.text = string.Format("Tiempo restante: {0}", restante);
+        if(timerIsRunning)
+        {
+            if (restante > 0)
+            {
+                restante -= Time.deltaTime;
+                DisplayTime(restante);
+            }
+            else
+            {
+                Debug.Log("Time has run out!");
+                restante = 0;
+                timerIsRunning = false;
+            }
+        }
+    
+        /*if(prevRestante - restante >= 1)
+        {
+            texto.text = string.Format("Tiempo restante: {0}", restante);
+            Debug.Log(texto.text);
+        }
+        prevRestante = restante;*/
+
         if(contadorItems <= 0) 
         {
             BackToBus();
         }
-        //else if timer acabado BadEnd(); BackToBus();
-        else if(cambio >= 90f)
+        else if(!timerIsRunning)
         {
             //BadEnd();
             GameManager.itemsMaleta = itemsVivos;
             BackToBus();
         }
+        //else if timer acabado BadEnd(); BackToBus();
         
     }
 
@@ -76,6 +97,14 @@ public class Backpack_minigame : MonoBehaviour
             child.gameObject.transform.GetChild(3).GetComponent<SpriteRenderer>().enabled = false;
             child.gameObject.transform.GetChild(4).GetComponent<SpriteRenderer>().enabled = false;
         }
+    }
+
+    void DisplayTime(float timeToDisplay)
+    {
+        timeToDisplay += 1;
+        float minutes = Mathf.FloorToInt(timeToDisplay / 60); 
+        float seconds = Mathf.FloorToInt(timeToDisplay % 60);
+        texto.text = "Quedan " + string.Format("{0:00}:{1:00}", minutes, seconds);
     }
 
     void OnTriggerStay2D(Collider2D col)
@@ -99,5 +128,6 @@ public class Backpack_minigame : MonoBehaviour
         Transform guy = CharacterScript.charact.gameObject.transform.GetChild(0);
         guy.GetComponent<SpriteRenderer>().sprite = exitSprite;
         guy.GetComponent<GuyMovement>().mlta.SetActive(false);
+        guy.GetComponent<GuyMovement>().mlta.transform.position = new Vector2(1.45f,-2.52f);
     }
 }
