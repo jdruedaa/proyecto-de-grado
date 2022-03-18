@@ -64,11 +64,11 @@ public class SliderManager : MonoBehaviour
         {
             if(GameManager.handSlider)
             {
-                moveSlider(0.11f * Time.deltaTime);
+                moveSlider(0.1f * Time.deltaTime);
             }
             else
             {
-                moveSlider(0.5f * Time.deltaTime);
+                moveSlider(0.4f * Time.deltaTime);
             }
         }
         if(value >= 50f && !active){
