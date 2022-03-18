@@ -26,6 +26,7 @@ public class GuyMovement : MonoBehaviour
         {
             maleta = true;
             this.GetComponent<SpriteRenderer>().sprite = sinMaleta;
+            GameManager.maletaDown = true;
             mlta.SetActive(true);
             tiempo2 = Time.time;
         }

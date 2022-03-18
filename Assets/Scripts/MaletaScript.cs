@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MaletaScript : MonoBehaviour
 {
@@ -17,5 +18,11 @@ public class MaletaScript : MonoBehaviour
         {
             this.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;
         }
+    }
+
+    void OnMouseDown()
+    {
+        SceneManager.LoadScene("Backpack minigame");
+        //Ponerle el timer a backpack minigame.cs
     }
 }

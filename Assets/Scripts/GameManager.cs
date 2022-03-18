@@ -6,6 +6,7 @@ public class GameManager : MonoBehaviour
 {
     public static bool phoneStolen;
     public static bool intro;
+    public static bool maletaDown;
     public static GameManager instance;
     public static bool[] itemsMaleta;
 
@@ -13,6 +14,7 @@ public class GameManager : MonoBehaviour
     {
         phoneStolen = false;
         intro = true;
+        maletaDown = false;
         itemsMaleta = new bool[5];
         int i = 0;
         while(i < itemsMaleta.Length)
