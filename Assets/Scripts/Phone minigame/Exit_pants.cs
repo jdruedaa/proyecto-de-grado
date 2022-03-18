@@ -20,13 +20,21 @@ public class Exit_pants : MonoBehaviour
         ready = true;
     }
 
+    void Awake()
+    {        
+        CharacterScript.charact.gameObject.transform.GetChild(0).GetComponent<SpriteRenderer>().enabled = false;
+        CharacterScript.charact.gameObject.transform.GetChild(1).GetComponent<SpriteRenderer>().enabled = false;
+        CharacterScript.charact.gameObject.transform.GetChild(2).GetComponent<SpriteRenderer>().enabled = false;
+        CharacterScript.charact.gameObject.transform.GetChild(3).GetComponent<SpriteRenderer>().enabled = false;
+    }
+
     //If your mouse hovers over the GameObject with the script attached, output this message
     void OnMouseOver()
     {
         if(ready){
             ready = false;
+            SceneManager.LoadScene("test scene");
             Phone_minigame.main_phone.act = false;
-            SceneManager.LoadScene("Main Screen");
         }
     }
 }
