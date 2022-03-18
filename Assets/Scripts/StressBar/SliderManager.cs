@@ -7,13 +7,19 @@ public class SliderManager : MonoBehaviour
 {
     public static SliderManager bar;
     public static float value;
+    public AudioSource song;
+    public AudioClip passive;
+    public AudioClip tense;
     public GameObject slider;
+    public bool active;
     Slider sl;
     public Text texto;
 
     void Start()
     {
         sl = slider.GetComponent<Slider>();
+        song.Play();
+        active = false;
     }
     public void moveSlider(float f)
     {
@@ -23,10 +29,22 @@ public class SliderManager : MonoBehaviour
             texto.text = string.Format("Nivel de estrés {0}/100", Mathf.Floor(sl.value));
         }
     }
+
+    void ChangeSong()
+    {
+        song.clip = tense;
+        song.Play();
+    }
+
     void FixedUpdate()
     {
         if(!GameManager.intro){
             moveSlider(0.1f * Time.deltaTime);
+        }
+        if(value >= 10f && !active){
+            Debug.Log("midway");
+            ChangeSong();
+            active = true;
         }
     }
 
