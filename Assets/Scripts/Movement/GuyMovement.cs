@@ -25,14 +25,13 @@ public class GuyMovement : MonoBehaviour
         if(drop && !GameManager.maletaDown)
         {
             this.GetComponent<SpriteRenderer>().sprite = sinMaleta;
-            GameManager.maletaDown = true;
             mlta.SetActive(true);
+            drop = false;
         }
         float t2 = (Time.time - tiempo) % 120;
         if (t2 > 119.5f && t2 < 120 && !GameManager.maletaDown)
         {
             this.GetComponent<SpriteRenderer>().sprite = sinMaleta;
-            GameManager.maletaDown = true;
             mlta.SetActive(true);
         }
         if (transform.position.x >=-0.0f && b)

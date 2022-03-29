@@ -28,4 +28,23 @@ public class MaletaScript : MonoBehaviour
     {
         SceneManager.LoadScene("Backpack minigame");
     }
+
+    void Awake()
+    {
+        if(!GameManager.maletaDown)
+        {
+            transform.position = new Vector2(1.45f,-2.52f);
+            this.GetComponent<Rigidbody2D>().velocity = new Vector2(-1.5f, -0.1f);
+            timeStart = Time.time + 2f;
+            maleta = this;
+            enabled = false;
+            GameManager.maletaDown = true;
+            Debug.Log(transform.position);
+            CharacterScript.charact.gameObject.transform.GetChild(0).GetComponent<GuyMovement>().mlta = gameObject;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
 }
