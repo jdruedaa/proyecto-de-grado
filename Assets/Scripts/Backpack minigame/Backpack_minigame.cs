@@ -127,7 +127,7 @@ public class Backpack_minigame : MonoBehaviour
         SceneManager.LoadScene("test scene");
         Transform guy = CharacterScript.charact.gameObject.transform.GetChild(0);
         guy.GetComponent<SpriteRenderer>().sprite = exitSprite;
-        guy.GetComponent<GuyMovement>().mlta.SetActive(false);
-        guy.GetComponent<GuyMovement>().mlta.transform.position = new Vector2(1.45f,-2.52f);
+        //guy.GetComponent<GuyMovement>().mlta.SetActive(false);
+        //guy.GetComponent<GuyMovement>().mlta.transform.position = new Vector2(1.45f,-2.52f);
     }
 }
