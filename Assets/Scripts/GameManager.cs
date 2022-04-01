@@ -6,16 +6,19 @@ public class GameManager : MonoBehaviour
 {
     public static bool phoneStolen;
     public static bool intro;
+    public static bool end;
     public static bool maletaDown;
     public static bool firstReaction;
     public static bool handSlider;
     public static GameManager instance;
     public static bool[] itemsMaleta;
+    public static int accScore = 0;
 
     void Start()
     {
         phoneStolen = false;
         intro = true;
+        end = false;
         maletaDown = false;
         firstReaction = true;
         handSlider = false;
@@ -48,17 +51,7 @@ public class GameManager : MonoBehaviour
 
     public void Reset()
     {
-        phoneStolen = false;
-        intro = true;
-        maletaDown = false;
-        firstReaction = true;
-        itemsMaleta = new bool[5];
-        int i = 0;
-        while(i < itemsMaleta.Length)
-        {
-            itemsMaleta[i] = true;
-            i++;
-        }
+        Start();
     }
 }
 
