@@ -928,7 +928,7 @@ GameObject:
   - component: {fileID: 275307972}
   - component: {fileID: 275307973}
   - component: {fileID: 275307974}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: Maleta
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2061,7 +2061,7 @@ GameObject:
   - component: {fileID: 750490953}
   - component: {fileID: 750490952}
   - component: {fileID: 750490954}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: Bus_Background-1.png (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

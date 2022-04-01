@@ -19,7 +19,7 @@ public class MaletaScript : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (rb.velocity.y == 0)
+        if(rb.velocity.y == 0)
         {
             rb.gravityScale = 0;
         }
