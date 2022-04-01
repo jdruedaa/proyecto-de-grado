@@ -7,28 +7,32 @@ public class GuyMovement : MonoBehaviour
     public Sprite newSprite;
     public Sprite sinMaleta;
     public static GuyMovement guy;
+    public bool drop;
     private bool b = true;
     float tiempo;
-    float tiempo2;
     private bool maleta;
     public GameObject mlta;
     // Start is called before the first frame update
     void Start()
     {
         tiempo = Time.time;
+        drop = false;
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        float t2 = (Time.time - tiempo) % 120;
-        if (t2 > 119.5f && t2 < 120 && !maleta)
+        if(drop && !GameManager.maletaDown)
         {
-            maleta = true;
             this.GetComponent<SpriteRenderer>().sprite = sinMaleta;
-            GameManager.maletaDown = true;
             mlta.SetActive(true);
-            tiempo2 = Time.time;
+            drop = false;
+        }
+        float t2 = (Time.time - tiempo) % 120;
+        if (t2 > 119.5f && t2 < 120 && !GameManager.maletaDown)
+        {
+            this.GetComponent<SpriteRenderer>().sprite = sinMaleta;
+            mlta.SetActive(true);
         }
         if (transform.position.x >=-0.0f && b)
         {
@@ -40,13 +44,6 @@ public class GuyMovement : MonoBehaviour
         else if(b) {
             Vector3 movement = new Vector3(2.75f*Time.deltaTime, 0, 0);
             transform.Translate(movement);
-        }
-        if(maleta)
-        {
-            float t3 = (Time.time - tiempo2) % 60; 
-            if (t3 > 59.5f && t3 < 60 && !maleta){
-
-            }
         }
     }
 }

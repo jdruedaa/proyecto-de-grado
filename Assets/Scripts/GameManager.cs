@@ -7,6 +7,8 @@ public class GameManager : MonoBehaviour
     public static bool phoneStolen;
     public static bool intro;
     public static bool maletaDown;
+    public static bool firstReaction;
+    public static bool handSlider;
     public static GameManager instance;
     public static bool[] itemsMaleta;
 
@@ -15,6 +17,8 @@ public class GameManager : MonoBehaviour
         phoneStolen = false;
         intro = true;
         maletaDown = false;
+        firstReaction = true;
+        handSlider = false;
         itemsMaleta = new bool[5];
         int i = 0;
         while(i < itemsMaleta.Length)
@@ -39,6 +43,21 @@ public class GameManager : MonoBehaviour
         else 
         { 
             Destroy(gameObject);
+        }
+    }
+
+    public void Reset()
+    {
+        phoneStolen = false;
+        intro = true;
+        maletaDown = false;
+        firstReaction = true;
+        itemsMaleta = new bool[5];
+        int i = 0;
+        while(i < itemsMaleta.Length)
+        {
+            itemsMaleta[i] = true;
+            i++;
         }
     }
 }

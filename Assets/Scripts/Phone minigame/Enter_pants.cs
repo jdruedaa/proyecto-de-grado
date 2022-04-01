@@ -29,16 +29,18 @@ public class Enter_pants : MonoBehaviour
             child.gameObject.transform.GetChild(1).GetComponent<SpriteRenderer>().enabled = true;
             child.gameObject.transform.GetChild(2).GetComponent<SpriteRenderer>().enabled = true;
             child.gameObject.transform.GetChild(3).GetComponent<SpriteRenderer>().enabled = true;
-            if(GameManager.maletaDown)
+            child.gameObject.transform.GetChild(4).GetComponent<SpriteRenderer>().enabled = true;
+            /*if(GameManager.maletaDown)
             {
                 child.gameObject.transform.GetChild(4).GetComponent<SpriteRenderer>().enabled = true;
-            }
+            }*/
         }
     }
 
     //If your mouse hovers over the GameObject with the script attached, output this message
     void OnMouseOver()
     {
+        Debug.Log("touch");
         if(ready && !GameManager.intro){
             ready = false;
             SceneManager.LoadScene("Practice scene");
