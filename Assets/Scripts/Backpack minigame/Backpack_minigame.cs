@@ -38,7 +38,7 @@ public class Backpack_minigame : MonoBehaviour
         }
         timeStart = CharacterScript.charact.gameObject.transform.GetChild(4).GetComponent<MaletaScript>().timeStart;
         timerIsRunning = true;
-        restante = 90f - (Time.time - timeStart);
+        restante = 50f - (Time.time - timeStart);
         //colliderMaleta = GetComponent<CapsuleCollider2D>();
         /*cuando hagamos posiciones random debe instanciar
         //items = GameManager.itemsMaleta();
@@ -74,6 +74,7 @@ public class Backpack_minigame : MonoBehaviour
 
         if(contadorItems <= 0) 
         {
+            Debug.Log("no items");
             BackToBus();
         }
         else if(!timerIsRunning)
@@ -127,7 +128,6 @@ public class Backpack_minigame : MonoBehaviour
         SceneManager.LoadScene("test scene");
         Transform guy = CharacterScript.charact.gameObject.transform.GetChild(0);
         guy.GetComponent<SpriteRenderer>().sprite = exitSprite;
-        //guy.GetComponent<GuyMovement>().mlta.SetActive(false);
-        //guy.GetComponent<GuyMovement>().mlta.transform.position = new Vector2(1.45f,-2.52f);
+        guy.GetComponent<GuyMovement>().mlta.restart();
     }
 }

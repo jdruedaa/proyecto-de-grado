@@ -47,18 +47,22 @@ public class Phone_minigame : MonoBehaviour
         if(hand){
             SliderManager.bar.moveSlider(0.5f * Time.deltaTime);
         }
-        if(Input.GetMouseButtonDown(1))
+        Scene currentScene = SceneManager.GetActiveScene();
+        if(currentScene.name == "Practice scene")
         {
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit2D hit = Physics2D.Raycast(ray.origin, Vector2.zero);
-            if (hit.collider != null && hit.collider.tag == gameObject.tag) 
+            if(Input.GetMouseButtonDown(1))
             {
-                if(act)
+                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                RaycastHit2D hit = Physics2D.Raycast(ray.origin, Vector2.zero);
+                if (hit.collider != null && hit.collider.tag == gameObject.tag) 
                 {
-                    hand = !hand;
-                    GameManager.handSlider = hand;
+                    if(act)
+                    {
+                        hand = !hand;
+                        GameManager.handSlider = hand;
+                    }
+                    //add hand sprite on top of phone, tal vez usar un tag para que ambos objetos vayan juntos
                 }
-                //add hand sprite on top of phone, tal vez usar un tag para que ambos objetos vayan juntos
             }
         }
         if(steal)
@@ -143,7 +147,8 @@ public class Phone_minigame : MonoBehaviour
 
     void OnMouseDrag()
     {
-        if(act)
+        Scene currentScene = SceneManager.GetActiveScene();
+        if(currentScene.name == "Practice scene")
         {
             if(canGrab)
             {
