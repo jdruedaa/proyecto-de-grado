@@ -15,27 +15,27 @@ public class Backpack_minigame_item : MonoBehaviour
     {
         if(gameObject.name == "TabletTurnedOff")
         {
-            transform.position = new Vector2(-6.26f, 0.51f);
+            transform.position = new Vector2(-6.26f, -27.74f);
             identifier = 0;
         }
         else if(gameObject.name == "Blue Book")
         {
-            transform.position = new Vector2(3.9f, 1.16f);
+            transform.position = new Vector2(3.9f, -26.23f);
             identifier = 1;
         }
         else if(gameObject.name == "red-book")
         {
-            transform.position = new Vector2(6.14f, -1.06f);
+            transform.position = new Vector2(6.14f, -28.83f);
             identifier = 2;
         }
         else if(gameObject.name == "Keys")
         {
-            transform.position = new Vector2(-7.05f, -3.3f);
+            transform.position = new Vector2(-7.05f, -31.33f);
             identifier = 3;
         }
         else
         {
-            transform.position = new Vector2(-1.96f, 1.26f);
+            transform.position = new Vector2(-1.96f, -27.49f);
             identifier = 4;
         }
         if(!GameManager.itemsMaleta[identifier])
@@ -84,7 +84,7 @@ public class Backpack_minigame_item : MonoBehaviour
 
     public void saved()
     {
-        GameManager.itemsMaleta[identifier] = false;
+        GameManager.itemsMaleta[identifier] = true;
         //spinning and shrinking animation
         Destroy(gameObject);
     }

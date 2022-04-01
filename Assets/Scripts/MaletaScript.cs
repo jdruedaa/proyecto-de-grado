@@ -7,10 +7,11 @@ public class MaletaScript : MonoBehaviour
 {
     public float timeStart;
     public static MaletaScript maleta;
+    public Rigidbody2D rb;
     // Start is called before the first frame update
     void Start()
     {
-        this.GetComponent<Rigidbody2D>().velocity = new Vector2(-1.5f, -0.1f);
+        rb = this.GetComponent<Rigidbody2D>();
         timeStart = Time.time + 2f;
         maleta = this;
     }
@@ -18,9 +19,9 @@ public class MaletaScript : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (this.GetComponent<Rigidbody2D>().velocity.y == 0)
+        if(rb.velocity.y == 0)
         {
-            this.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;
+            rb.gravityScale = 0;
         }
     }
 
@@ -29,18 +30,33 @@ public class MaletaScript : MonoBehaviour
         SceneManager.LoadScene("Backpack minigame");
     }
 
+    public void restart()
+    {
+        rb.gravityScale = 0;
+        transform.position = new Vector2(1.458343f,-2.521799f);
+        gameObject.SetActive(false);
+        Debug.Log(transform.position);
+    }
+
+    public void drop()
+    {
+        transform.position = new Vector2(1.458343f,-2.521799f);
+        gameObject.SetActive(true);
+        rb.gravityScale = 1.5f;
+        timeStart = Time.time + 2f;
+        GameManager.maletaDown = true;
+    }
+
     void Awake()
     {
         if(!GameManager.maletaDown)
         {
-            transform.position = new Vector2(1.45f,-2.52f);
-            this.GetComponent<Rigidbody2D>().velocity = new Vector2(-1.5f, -0.1f);
+            rb = this.GetComponent<Rigidbody2D>();
+            rb.gravityScale = 0;
+            transform.position = new Vector2(1.458343f,-2.521799f);
             timeStart = Time.time + 2f;
             maleta = this;
-            enabled = false;
-            GameManager.maletaDown = true;
-            Debug.Log(transform.position);
-            CharacterScript.charact.gameObject.transform.GetChild(0).GetComponent<GuyMovement>().mlta = gameObject;
+            gameObject.SetActive(false);
         }
         else
         {

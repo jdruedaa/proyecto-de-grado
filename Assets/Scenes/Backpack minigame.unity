@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 69458003}
   - component: {fileID: 69458002}
   - component: {fileID: 69458001}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -237,7 +237,7 @@ GameObject:
   - component: {fileID: 92453997}
   - component: {fileID: 92453996}
   - component: {fileID: 92453995}
-  m_Layer: 8
+  m_Layer: 6
   m_Name: Piso
   m_TagString: Piso
   m_Icon: {fileID: 0}
@@ -304,7 +304,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 92453992}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.0696, y: -0.2651, z: 0}
+  m_LocalPosition: {x: -0.0696, y: -27.5, z: 0}
   m_LocalScale: {x: 18.276705, y: 10.83635, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -426,7 +426,7 @@ GameObject:
   - component: {fileID: 731362993}
   - component: {fileID: 731362992}
   - component: {fileID: 731362995}
-  m_Layer: 8
+  m_Layer: 6
   m_Name: Mochila
   m_TagString: Maleta
   m_Icon: {fileID: 0}
@@ -508,7 +508,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 731362991}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.67, y: -3.27, z: 0}
+  m_LocalPosition: {x: -0.67, y: -30.5049, z: 4}
   m_LocalScale: {x: 2.112767, y: 2.2295983, z: 1}
   m_Children:
   - {fileID: 69458000}
@@ -532,6 +532,8 @@ MonoBehaviour:
   itemsVivos: 
   timeStart: 0
   texto: {fileID: 1571053697}
+  restante: 0
+  timerIsRunning: 0
 --- !u!1 &1401193587
 GameObject:
   m_ObjectHideFlags: 0
@@ -545,7 +547,7 @@ GameObject:
   - component: {fileID: 1401193588}
   - component: {fileID: 1401193591}
   - component: {fileID: 1401193592}
-  m_Layer: 8
+  m_Layer: 6
   m_Name: red-book
   m_TagString: ItemMaleta
   m_Icon: {fileID: 0}
@@ -637,7 +639,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1401193587}
   m_LocalRotation: {x: -0, y: -0, z: 0.3952224, w: 0.9185855}
-  m_LocalPosition: {x: 6.14, y: -1.06, z: 0}
+  m_LocalPosition: {x: 6.14, y: -28.294899, z: 4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -692,7 +694,7 @@ GameObject:
   - component: {fileID: 1504328394}
   - component: {fileID: 1504328397}
   - component: {fileID: 1504328398}
-  m_Layer: 8
+  m_Layer: 6
   m_Name: Blue Book
   m_TagString: ItemMaleta
   m_Icon: {fileID: 0}
@@ -784,7 +786,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1504328393}
   m_LocalRotation: {x: -0, y: -0, z: -0.27436578, w: 0.96162546}
-  m_LocalPosition: {x: 3.9, y: 1.167341, z: 0}
+  m_LocalPosition: {x: 3.9, y: -26.067558, z: 4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -903,7 +905,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1508666375}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7.79, y: -0.652, z: 0}
+  m_LocalPosition: {x: 7.79, y: -27.8869, z: 0}
   m_LocalScale: {x: 0.6433, y: 10.590605, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -922,7 +924,7 @@ GameObject:
   - component: {fileID: 1511771592}
   - component: {fileID: 1511771595}
   - component: {fileID: 1511771596}
-  m_Layer: 8
+  m_Layer: 6
   m_Name: Keys
   m_TagString: ItemMaleta
   m_Icon: {fileID: 0}
@@ -1004,7 +1006,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1511771591}
   m_LocalRotation: {x: -0, y: -0, z: -0.48419392, w: 0.8749607}
-  m_LocalPosition: {x: -5.5, y: -2.98, z: 0}
+  m_LocalPosition: {x: -5.5, y: -30.2149, z: 4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1057,7 +1059,7 @@ GameObject:
   - component: {fileID: 1571053696}
   - component: {fileID: 1571053698}
   - component: {fileID: 1571053697}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1138,7 +1140,7 @@ GameObject:
   - component: {fileID: 1724480064}
   - component: {fileID: 1724480065}
   - component: {fileID: 1724480066}
-  m_Layer: 8
+  m_Layer: 6
   m_Name: TabletTurnedOff
   m_TagString: ItemMaleta
   m_Icon: {fileID: 0}
@@ -1204,7 +1206,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1724480061}
   m_LocalRotation: {x: -0, y: -0, z: 0.23596399, w: 0.9717618}
-  m_LocalPosition: {x: -6.26, y: 0.51, z: 0}
+  m_LocalPosition: {x: -6.26, y: -26.7249, z: 4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1285,7 +1287,7 @@ GameObject:
   - component: {fileID: 1745448077}
   - component: {fileID: 1745448080}
   - component: {fileID: 1745448081}
-  m_Layer: 8
+  m_Layer: 6
   m_Name: green-book.png
   m_TagString: ItemMaleta
   m_Icon: {fileID: 0}
@@ -1377,7 +1379,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1745448076}
   m_LocalRotation: {x: -0, y: -0, z: 0.8321109, w: -0.5546094}
-  m_LocalPosition: {x: -1.96, y: 1.26, z: 0}
+  m_LocalPosition: {x: -1.96, y: -25.9749, z: 4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1496,7 +1498,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1767482515}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.6999, y: 4.3263, z: 0}
+  m_LocalPosition: {x: -0.6999, y: -22.9086, z: 0}
   m_LocalScale: {x: 16.5379, y: 0.6308396, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1579,7 +1581,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1908071698}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalPosition: {x: 0, y: -27.2349, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
