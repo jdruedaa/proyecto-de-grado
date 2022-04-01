@@ -73,7 +73,6 @@ public class SliderManager : MonoBehaviour
             }
         }
         if(value >= 50f && !active){
-            Debug.Log("midway");
             ChangeSong();
             active = true;
         }
