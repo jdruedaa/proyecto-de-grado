@@ -13,7 +13,7 @@ public class SliderManager : MonoBehaviour
     public AudioClip tense;
     public GameObject slider;
     public bool active;
-    Slider sl;
+    public Slider sl;
     public Text texto;
     public float timer;
     public float prevTime;
@@ -35,6 +35,7 @@ public class SliderManager : MonoBehaviour
         }
         if(sl.value >= 100)
         {
+            GameManager.end = true;
             SceneManager.LoadScene("Game Over");
             var go = new GameObject("first");
             DontDestroyOnLoad(go);
@@ -60,7 +61,7 @@ public class SliderManager : MonoBehaviour
 
     void FixedUpdate()
     {
-        if(!GameManager.intro)
+        if(!GameManager.intro && !GameManager.end)
         {
             if(GameManager.handSlider)
             {
@@ -80,7 +81,8 @@ public class SliderManager : MonoBehaviour
         timer = currentTime - prevTime;
         if(timer >= 600f)
         {
-            SceneManager.LoadScene("Congratulations");
+            GameManager.end = true;
+            SceneManager.LoadScene("Results");
             var go = new GameObject("first");
             DontDestroyOnLoad(go);
             foreach(var root in go.scene.GetRootGameObjects())
