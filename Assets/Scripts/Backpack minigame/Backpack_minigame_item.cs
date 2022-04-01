@@ -84,7 +84,7 @@ public class Backpack_minigame_item : MonoBehaviour
 
     public void saved()
     {
-        GameManager.itemsMaleta[identifier] = false;
+        GameManager.itemsMaleta[identifier] = true;
         //spinning and shrinking animation
         Destroy(gameObject);
     }

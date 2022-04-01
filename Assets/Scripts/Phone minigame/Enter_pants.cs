@@ -40,7 +40,7 @@ public class Enter_pants : MonoBehaviour
     //If your mouse hovers over the GameObject with the script attached, output this message
     void OnMouseOver()
     {
-        Debug.Log("touch");
+        Debug.Log("hovered");
         if(ready && !GameManager.intro){
             ready = false;
             SceneManager.LoadScene("Practice scene");
