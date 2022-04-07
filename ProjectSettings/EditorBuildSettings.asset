@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Practice scene.unity
     guid: 145b46408f2a45e46bd9b0edee35ae42
+  - enabled: 1
+    path: Assets/Scenes/Backpack minigame.unity
+    guid: 57cbccbf048f5914384d4fcb8c0da02a
   m_configObjects: {}
