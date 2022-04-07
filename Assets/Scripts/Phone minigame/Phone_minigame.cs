@@ -8,12 +8,13 @@ public class Phone_minigame : MonoBehaviour
 {
     public bool movement;
     public Vector2 target;
-    public float speed = 20f;
+    public float speed = 0.1f;
     public Vector2 position;
     public bool hand;
     public bool holding;
     public bool canGrab;
     public bool act;
+    public bool targetReached;
     public static Phone_minigame main_phone;
     private Rigidbody2D rgb;
     public bool steal;
@@ -31,35 +32,45 @@ public class Phone_minigame : MonoBehaviour
         holding = false;
         canGrab = true;
         act = true;
+        targetReached = false;
         rgb = GetComponent<Rigidbody2D>();
         rgb.constraints = RigidbodyConstraints2D.FreezeRotation;
         steal = false;
         stolen = false;
         Trans_movement();
+        Vibration();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetMouseButtonDown(1))
+        if(hand){
+            SliderManager.bar.moveSlider(0.5f * Time.deltaTime);
+        }
+        Scene currentScene = SceneManager.GetActiveScene();
+        if(currentScene.name == "Practice scene")
         {
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit2D hit = Physics2D.Raycast(ray.origin, Vector2.zero);
-            if (hit.collider != null && hit.collider.tag == gameObject.tag) 
+            if(Input.GetMouseButtonDown(1))
             {
-                if(act)
+                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                RaycastHit2D hit = Physics2D.Raycast(ray.origin, Vector2.zero);
+                if (hit.collider != null && hit.collider.tag == gameObject.tag) 
                 {
-                    hand = !hand;
+                    if(act)
+                    {
+                        hand = !hand;
+                        GameManager.handSlider = hand;
+                    }
+                    //add hand sprite on top of phone, tal vez usar un tag para que ambos objetos vayan juntos
                 }
-                //add hand sprite on top of phone, tal vez usar un tag para que ambos objetos vayan juntos
             }
         }
         if(steal)
         {
-            Debug.Log("Time: " + Time.time);
-            Debug.Log("steal attempt:" + stealAttemptTime);
             if(Time.time >= stealAttemptTime)
             {
+                Debug.Log(Time.time);
+                Debug.Log("steal attempt:" + stealAttemptTime);
                 StealAttempt();
                 stealAttemptTime = Time.time + 5f;
             }
@@ -97,6 +108,7 @@ public class Phone_minigame : MonoBehaviour
                 steal = true;
                 Debug.Log("Robable");
             }
+            targetReached = true;
         }
     }
 
@@ -129,12 +141,14 @@ public class Phone_minigame : MonoBehaviour
             stealAttemptTime = Time.time + 5f;
             steal = false;
             Debug.Log("No Robable");
+            targetReached = false;
         }
     }
 
     void OnMouseDrag()
     {
-        if(act)
+        Scene currentScene = SceneManager.GetActiveScene();
+        if(currentScene.name == "Practice scene")
         {
             if(canGrab)
             {
@@ -166,8 +180,16 @@ public class Phone_minigame : MonoBehaviour
 
     void Trans_movement()
     {
-        StartCoroutine(WaitMove(10));
-        Movement(1,3);
+        StartCoroutine(WaitMove(15));
+        Movement(3,2);
+    }
+
+    void Vibration()
+    {
+        if(!hand && !holding && !targetReached){
+            StartCoroutine(WaitVib(2));
+        }
+        Movement(1,1);
     }
 
     public void Movement(int time, int sped)
@@ -177,13 +199,12 @@ public class Phone_minigame : MonoBehaviour
 
     IEnumerator Waiting(int time, int sped)
     {
-        if(!hand && !movement){
-            this.speed = sped;
+        if(!hand && !GameManager.intro){
+            yield return new WaitUntil(() => movement == false);
             movement = true;
+            this.speed = sped;
             yield return new WaitForSeconds(time);
             movement = false;
-        }else if(!hand){
-            StartCoroutine(Waiting(time,sped));
         }
     }
 
@@ -193,12 +214,17 @@ public class Phone_minigame : MonoBehaviour
         Trans_movement();
     }
 
+    IEnumerator WaitVib(int time)
+    {
+        yield return new WaitForSeconds(time);
+        Vibration();
+    }
+
     void StealAttempt()
     {
         if(Random.Range(0,100) <= 60)
         {
             Debug.Log("Celular Robado D:");
-            //mejor mandar señal a otro lado de que se robaron el celular?
             GameManager.phoneStolen = true;
             Destroy(gameObject);
         }

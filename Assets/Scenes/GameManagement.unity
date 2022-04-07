@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 1450298765}
   m_Layer: 0
   m_Name: GameManager
-  m_TagString: Untagged
+  m_TagString: Admin
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -166,4 +166,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6d8762be2f1cee4f8897cc6c93ec082, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  phoneStolen: 0

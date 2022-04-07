@@ -24,6 +24,7 @@ public class GrandmaMovement : MonoBehaviour
         else
         {
             this.GetComponent<Animator>().enabled = false;
+            GameManager.intro = false;
         }
     }
 }

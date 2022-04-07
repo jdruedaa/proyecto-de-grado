@@ -6,6 +6,10 @@ TagManager:
   tags:
   - Phone
   - Pants
+  - Maleta
+  - Piso
+  - ItemMaleta
+  - Admin
   layers:
   - Default
   - TransparentFX
@@ -13,9 +17,9 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
-  - 
+  - maleta
+  - bolsillo
+  - bus
   - 
   - 
   - 

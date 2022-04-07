@@ -20,13 +20,30 @@ public class Enter_pants : MonoBehaviour
         ready = true;
     }
 
+    void Awake()
+    {        
+        CharacterScript child = CharacterScript.charact;
+        if(child != null)
+        {
+            child.gameObject.transform.GetChild(0).GetComponent<SpriteRenderer>().enabled = true;
+            child.gameObject.transform.GetChild(1).GetComponent<SpriteRenderer>().enabled = true;
+            child.gameObject.transform.GetChild(2).GetComponent<SpriteRenderer>().enabled = true;
+            child.gameObject.transform.GetChild(3).GetComponent<SpriteRenderer>().enabled = true;
+            child.gameObject.transform.GetChild(4).GetComponent<SpriteRenderer>().enabled = true;
+            /*if(GameManager.maletaDown)
+            {
+                child.gameObject.transform.GetChild(4).GetComponent<SpriteRenderer>().enabled = true;
+            }*/
+        }
+    }
+
     //If your mouse hovers over the GameObject with the script attached, output this message
     void OnMouseOver()
     {
-        if(ready){
+        if(ready && !GameManager.intro){
             ready = false;
-            Phone_minigame.main_phone.act = true;
             SceneManager.LoadScene("Practice scene");
+            Phone_minigame.main_phone.act = true;
         }
     }
 }
