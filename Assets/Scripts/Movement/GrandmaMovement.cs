@@ -5,7 +5,7 @@ using UnityEngine;
 public class GrandmaMovement : MonoBehaviour
 {
     public Sprite newSprite;
-    public GameObject textoTutorial;
+    public Canvas textoTuto;
 
     // Start is called before the first frame update
     void Start()
@@ -25,6 +25,7 @@ public class GrandmaMovement : MonoBehaviour
         {
             this.GetComponent<Animator>().enabled = false;
             GameManager.intro = false;
+            textoTuto.gameObject.SetActive(true);
         }
     }
 }

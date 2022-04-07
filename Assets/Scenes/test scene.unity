@@ -3168,7 +3168,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   newSprite: {fileID: 0}
-  textoTutorial: {fileID: 1357910305}
 --- !u!1 &1356475926
 GameObject:
   m_ObjectHideFlags: 0
