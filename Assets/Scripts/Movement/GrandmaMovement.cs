@@ -7,6 +7,7 @@ public class GrandmaMovement : MonoBehaviour
     public Sprite newSprite;
     public Canvas textoTuto;
 
+
     // Start is called before the first frame update
     void Start()
     {
@@ -24,8 +25,10 @@ public class GrandmaMovement : MonoBehaviour
         else
         {
             this.GetComponent<Animator>().enabled = false;
-            GameManager.intro = false;
-            textoTuto.gameObject.SetActive(true);
+            if (textoTuto!=null)
+            {
+                textoTuto.gameObject.SetActive(true);
+            }
         }
     }
 }
