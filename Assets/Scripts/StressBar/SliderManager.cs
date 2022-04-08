@@ -63,13 +63,13 @@ public class SliderManager : MonoBehaviour
     {
         if(!GameManager.intro && !GameManager.end)
         {
-            if(GameManager.handSlider)
+            if(!GameManager.handSlider)
             {
-                moveSlider(0.1f * Time.deltaTime);
+                moveSlider(0.25f * Time.deltaTime);
             }
             else
             {
-                moveSlider(0.4f * Time.deltaTime);
+                moveSlider(0.8f * Time.deltaTime);
             }
         }
         if(value >= 50f && !active){
@@ -78,7 +78,7 @@ public class SliderManager : MonoBehaviour
         }
         float currentTime = Time.time;
         timer = currentTime - prevTime;
-        if(timer >= 600f)
+        if(timer >= 300f)
         {
             GameManager.end = true;
             SceneManager.LoadScene("Results");

@@ -44,9 +44,6 @@ public class Phone_minigame : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(hand){
-            SliderManager.bar.moveSlider(0.5f * Time.deltaTime);
-        }
         Scene currentScene = SceneManager.GetActiveScene();
         if(currentScene.name == "Practice scene")
         {
