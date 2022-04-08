@@ -36,6 +36,7 @@ public class TextosTutorial : MonoBehaviour
             case 9:
                 Time.timeScale = 1;
                 canvas.enabled = false;
+                GameManager.intro = false;
                 break;
             case 8:
                 textoTutorial.text = texto9;

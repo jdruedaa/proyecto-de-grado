@@ -20,4 +20,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Backpack minigame.unity
     guid: 57cbccbf048f5914384d4fcb8c0da02a
+  - enabled: 1
+    path: Assets/Scenes/Game Over.unity
+    guid: 434e91b16a8058846898c08fd3493cd7
+  - enabled: 1
+    path: Assets/Scenes/Results.unity
+    guid: fed726b1992d4654590e2a9f88f646a6
   m_configObjects: {}
