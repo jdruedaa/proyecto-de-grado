@@ -7,11 +7,13 @@ public class GameManager : MonoBehaviour
     public static bool phoneStolen;
     public static bool intro;
     public static bool end;
+    public static bool relaxed;
     public static bool maletaDown;
     public static bool firstReaction;
     public static bool handSlider;
     public static GameManager instance;
     public static bool[] itemsMaleta;
+    public static string[] motivosRobo;
     public static int accScore = 0;
 
     void Start()
@@ -19,6 +21,7 @@ public class GameManager : MonoBehaviour
         phoneStolen = false;
         intro = true;
         end = false;
+        relaxed = false;
         maletaDown = false;
         firstReaction = true;
         handSlider = false;
@@ -29,6 +32,7 @@ public class GameManager : MonoBehaviour
             itemsMaleta[i] = true;
             i++;
         }
+        motivosRobo = new string[6];
     }
 
     void Update()
