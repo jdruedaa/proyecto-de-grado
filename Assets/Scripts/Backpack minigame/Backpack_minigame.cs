@@ -81,6 +81,20 @@ public class Backpack_minigame : MonoBehaviour
         {
             //BadEnd();
             GameManager.itemsMaleta = itemsVivos;
+            int i = 0;
+            while(i < itemsVivos.Length)
+            {
+                if(!itemsVivos[i])
+                {
+                    GameManager.motivosRobo[i+1] = "(Distracción)";
+                }
+                i++;
+            }
+            while(contadorItems > 0)
+            {
+                SliderManager.bar.moveSlider(10f);
+                contadorItems--;
+            }
             BackToBus();
         }
         //else if timer acabado BadEnd(); BackToBus();

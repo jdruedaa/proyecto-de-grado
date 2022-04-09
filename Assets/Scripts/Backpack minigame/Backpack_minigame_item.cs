@@ -30,12 +30,12 @@ public class Backpack_minigame_item : MonoBehaviour
         }
         else if(gameObject.name == "Keys")
         {
-            transform.position = new Vector2(-7.05f, -31.33f);
+            transform.position = new Vector2(-7.05f, -30.21f);
             identifier = 3;
         }
         else
         {
-            transform.position = new Vector2(-1.96f, -27.49f);
+            transform.position = new Vector2(-1.96f, -25.97f);
             identifier = 4;
         }
         if(!GameManager.itemsMaleta[identifier])

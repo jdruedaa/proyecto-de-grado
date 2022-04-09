@@ -34,7 +34,7 @@ public class Results : MonoBehaviour
         }
         else
         {
-            texto2.text = "Perdido";
+            texto2.text = "Perdido " + GameManager.motivosRobo[0];
         }
         int i = 0;
         bool[] items = GameManager.itemsMaleta;
@@ -47,7 +47,7 @@ public class Results : MonoBehaviour
             }
             else
             {
-                texto2.text += "\nPerdido";
+                texto2.text += "\nPerdido " + GameManager.motivosRobo[i+1];
             }
             i++;
         }
