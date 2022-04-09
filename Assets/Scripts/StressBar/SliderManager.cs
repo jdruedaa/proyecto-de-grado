@@ -63,14 +63,9 @@ public class SliderManager : MonoBehaviour
     {
         if(!GameManager.intro && !GameManager.end)
         {
-            if(!GameManager.handSlider)
-            {
-                moveSlider(0.25f * Time.deltaTime);
-            }
-            else
-            {
-                moveSlider(0.8f * Time.deltaTime);
-            }
+            float t = GameManager.handSlider? 1.5f: 0.5f;
+            t = t + (GameManager.relaxed? -1.2f: 0f);
+            moveSlider(t * Time.deltaTime);
         }
         if(value >= 50f && !active){
             ChangeSong();

@@ -36,7 +36,7 @@ public class Exit_pants : MonoBehaviour
             ready = false;
             if(GameManager.phoneStolen && GameManager.firstReaction)
             {
-                SliderManager.bar.moveSlider(18f);
+                SliderManager.bar.moveSlider(25f);
                 GameManager.firstReaction = false;
             }
             SceneManager.LoadScene("test scene");

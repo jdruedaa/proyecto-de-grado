@@ -24,9 +24,9 @@ public class Phone_minigame : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        transform.position = new Vector2(5,0);
+        transform.position = new Vector2(104.1f,-40.3f);
         movement = false;
-        target = new Vector2(-7,0);
+        target = new Vector2(92.1f,-40.3f);
         position = gameObject.transform.position;
         hand = false;
         holding = false;
@@ -53,11 +53,8 @@ public class Phone_minigame : MonoBehaviour
                 RaycastHit2D hit = Physics2D.Raycast(ray.origin, Vector2.zero);
                 if (hit.collider != null && hit.collider.tag == gameObject.tag) 
                 {
-                    if(act)
-                    {
-                        hand = !hand;
-                        GameManager.handSlider = hand;
-                    }
+                    hand = !hand;
+                    GameManager.handSlider = hand;
                     //add hand sprite on top of phone, tal vez usar un tag para que ambos objetos vayan juntos
                 }
             }
@@ -224,6 +221,7 @@ public class Phone_minigame : MonoBehaviour
             Debug.Log("Celular Robado D:");
             GameManager.phoneStolen = true;
             Destroy(gameObject);
+            GameManager.motivosRobo[0] = "(Cosquilleo)";
         }
         else
         {
