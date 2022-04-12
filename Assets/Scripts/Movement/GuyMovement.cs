@@ -25,7 +25,7 @@ public class GuyMovement : MonoBehaviour
         float t2 = (Time.time - tiempo) % 30f;
         if (!GameManager.intro && t2 > 29f && t2 < 30f && !GameManager.maletaDown)
         {
-            Debug.Log("drop at " + Time.time);
+            //Debug.Log("drop at " + Time.time);
             this.GetComponent<SpriteRenderer>().sprite = sinMaleta;
             mlta.drop();
         }
