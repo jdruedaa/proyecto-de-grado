@@ -94,6 +94,7 @@ public class Backpack_minigame : MonoBehaviour
             {
                 SliderManager.bar.moveSlider(10f);
                 contadorItems--;
+                GameManager.totalItems--;
             }
             BackToBus();
         }

@@ -3704,6 +3704,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textos: []
   continuar: {fileID: 1986490627}
+  textoTitulo: {fileID: 771036078}
   textoTutorial: {fileID: 1533370489}
   textoBoton: {fileID: 883664931}
   canvas: {fileID: 1079533220}

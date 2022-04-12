@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
     public static bool[] itemsMaleta;
     public static string[] motivosRobo;
     public static int accScore = 0;
+    public static float totalItems = 5f;
 
     void Start()
     {

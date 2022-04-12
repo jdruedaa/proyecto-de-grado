@@ -64,7 +64,7 @@ public class SliderManager : MonoBehaviour
         if(!GameManager.intro && !GameManager.end)
         {
             float t = GameManager.handSlider? 1.5f: 0.5f;
-            t = t + (GameManager.relaxed? -1.2f: 0f);
+            t = t + (GameManager.relaxed? (GameManager.totalItems*0.16f+(GameManager.phoneStolen?0f:0.45f))*-1f: 0f);
             moveSlider(t * Time.deltaTime);
         }
         if(value >= 50f && !active){
