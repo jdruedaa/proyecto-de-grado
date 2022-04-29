@@ -13,6 +13,8 @@ public class GameManager : MonoBehaviour
     public static bool handSlider;
     public static GameManager instance;
     public static bool[] itemsMaleta;
+    //mejoras[0] -> nivel celular, [1] -> nivel maleta, [2] -> nivel x
+    public static int[] mejoras = {0,0,0};
     public static string[] motivosRobo;
     public static int accScore = 0;
     public static float totalItems = 5f;
