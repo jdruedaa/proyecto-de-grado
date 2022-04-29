@@ -29,6 +29,7 @@ public class Phone_minigame : MonoBehaviour
         target = new Vector2(92.1f,-40.3f);
         position = gameObject.transform.position;
         hand = false;
+        GameManager.handSlider = hand;
         holding = false;
         canGrab = true;
         act = true;
@@ -147,6 +148,7 @@ public class Phone_minigame : MonoBehaviour
             if(canGrab)
             {
                 hand = false;
+                GameManager.handSlider = hand;
                 holding = true;
                 Vector3 mousePos = Input.mousePosition;
                 mousePos.z = Camera.main.nearClipPlane;

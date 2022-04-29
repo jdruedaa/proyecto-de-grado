@@ -27,7 +27,9 @@ public class MaletaScript : MonoBehaviour
 
     void OnMouseDown()
     {
-        SceneManager.LoadScene("Backpack minigame");
+        if(!GameManager.intro){
+            SceneManager.LoadScene("Backpack minigame");
+        }
     }
 
     public void restart()
