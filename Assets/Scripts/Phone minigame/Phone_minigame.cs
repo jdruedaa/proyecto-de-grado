@@ -175,7 +175,8 @@ public class Phone_minigame : MonoBehaviour
     void Trans_movement()
     {
         StartCoroutine(WaitMove(15));
-        Movement(3,2);
+        float[] sped = {2f,1.5f,1.25f,1f};
+        Movement(3,sped[GameManager.mejoras[0]]);
     }
 
     void Vibration()
@@ -183,15 +184,15 @@ public class Phone_minigame : MonoBehaviour
         if(!hand && !holding && !targetReached){
             StartCoroutine(WaitVib(2));
         }
-        Movement(1,1);
+        Movement(1,1f);
     }
 
-    public void Movement(int time, int sped)
+    public void Movement(int time, float sped)
     {
         StartCoroutine(Waiting(time,sped));
     }    
 
-    IEnumerator Waiting(int time, int sped)
+    IEnumerator Waiting(int time, float sped)
     {
         if(!hand && !GameManager.intro){
             yield return new WaitUntil(() => movement == false);

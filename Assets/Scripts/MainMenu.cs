@@ -21,4 +21,9 @@ public class MainMenu : MonoBehaviour
     {
         SceneManager.LoadScene("test scene");
     }
+
+    public void Tienda()
+    {
+        SceneManager.LoadScene("Tienda Temp");
+    }
 }
