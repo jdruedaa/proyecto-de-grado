@@ -63,14 +63,9 @@ public class SliderManager : MonoBehaviour
     {
         if(!GameManager.intro && !GameManager.end)
         {
-            if(GameManager.handSlider)
-            {
-                moveSlider(0.1f * Time.deltaTime);
-            }
-            else
-            {
-                moveSlider(0.4f * Time.deltaTime);
-            }
+            float t = GameManager.handSlider? 1.5f: 0.5f;
+            t = t + (GameManager.relaxed? (GameManager.totalItems*0.16f+(GameManager.phoneStolen?0f:0.45f))*-1f: 0f);
+            moveSlider(t * Time.deltaTime);
         }
         if(value >= 50f && !active){
             ChangeSong();
@@ -78,7 +73,7 @@ public class SliderManager : MonoBehaviour
         }
         float currentTime = Time.time;
         timer = currentTime - prevTime;
-        if(timer >= 600f)
+        if(timer >= 300f)
         {
             GameManager.end = true;
             SceneManager.LoadScene("Results");

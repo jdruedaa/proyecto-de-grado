@@ -106,10 +106,10 @@ TextureImporter:
       name: spritesheetMujer_0
       rect:
         serializedVersion: 2
-        x: 36
-        y: 15
-        width: 27
-        height: 66
+        x: 358
+        y: 147
+        width: 274
+        height: 665
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -127,10 +127,10 @@ TextureImporter:
       name: spritesheetMujer_1
       rect:
         serializedVersion: 2
-        x: 136
-        y: 15
-        width: 27
-        height: 66
+        x: 1358
+        y: 147
+        width: 304
+        height: 655
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -148,10 +148,10 @@ TextureImporter:
       name: spritesheetMujer_2
       rect:
         serializedVersion: 2
-        x: 236
-        y: 15
-        width: 27
-        height: 65
+        x: 2358
+        y: 147
+        width: 274
+        height: 665
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -169,10 +169,10 @@ TextureImporter:
       name: spritesheetMujer_3
       rect:
         serializedVersion: 2
-        x: 336
-        y: 15
-        width: 30
-        height: 65
+        x: 3358
+        y: 147
+        width: 274
+        height: 655
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}

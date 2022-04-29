@@ -24,11 +24,12 @@ public class Phone_minigame : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        transform.position = new Vector2(5,0);
+        transform.position = new Vector2(104.1f,-40.3f);
         movement = false;
-        target = new Vector2(-7,0);
+        target = new Vector2(92.1f,-40.3f);
         position = gameObject.transform.position;
         hand = false;
+        GameManager.handSlider = hand;
         holding = false;
         canGrab = true;
         act = true;
@@ -44,9 +45,6 @@ public class Phone_minigame : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(hand){
-            SliderManager.bar.moveSlider(0.5f * Time.deltaTime);
-        }
         Scene currentScene = SceneManager.GetActiveScene();
         if(currentScene.name == "Practice scene")
         {
@@ -56,11 +54,8 @@ public class Phone_minigame : MonoBehaviour
                 RaycastHit2D hit = Physics2D.Raycast(ray.origin, Vector2.zero);
                 if (hit.collider != null && hit.collider.tag == gameObject.tag) 
                 {
-                    if(act)
-                    {
-                        hand = !hand;
-                        GameManager.handSlider = hand;
-                    }
+                    hand = !hand;
+                    GameManager.handSlider = hand;
                     //add hand sprite on top of phone, tal vez usar un tag para que ambos objetos vayan juntos
                 }
             }
@@ -69,8 +64,8 @@ public class Phone_minigame : MonoBehaviour
         {
             if(Time.time >= stealAttemptTime)
             {
-                Debug.Log(Time.time);
-                Debug.Log("steal attempt:" + stealAttemptTime);
+                //Debug.Log(Time.time);
+                //Debug.Log("steal attempt:" + stealAttemptTime);
                 StealAttempt();
                 stealAttemptTime = Time.time + 5f;
             }
@@ -106,7 +101,7 @@ public class Phone_minigame : MonoBehaviour
             {
                 stealAttemptTime = Time.time + 10f;
                 steal = true;
-                Debug.Log("Robable");
+                //Debug.Log("Robable");
             }
             targetReached = true;
         }
@@ -122,14 +117,14 @@ public class Phone_minigame : MonoBehaviour
                 {
                     stealAttemptTime = Time.time + 5f;
                     steal = true;
-                    Debug.Log("Robable");
+                    //Debug.Log("Robable");
                 }
             }
             else
             {
                 stealAttemptTime = Time.time + 5f;
                 steal = false;
-                Debug.Log("No Robable");
+                //Debug.Log("No Robable");
             }
         }
     }
@@ -140,7 +135,7 @@ public class Phone_minigame : MonoBehaviour
         {
             stealAttemptTime = Time.time + 5f;
             steal = false;
-            Debug.Log("No Robable");
+            //Debug.Log("No Robable");
             targetReached = false;
         }
     }
@@ -153,6 +148,7 @@ public class Phone_minigame : MonoBehaviour
             if(canGrab)
             {
                 hand = false;
+                GameManager.handSlider = hand;
                 holding = true;
                 Vector3 mousePos = Input.mousePosition;
                 mousePos.z = Camera.main.nearClipPlane;
@@ -224,13 +220,14 @@ public class Phone_minigame : MonoBehaviour
     {
         if(Random.Range(0,100) <= 60)
         {
-            Debug.Log("Celular Robado D:");
+            //Debug.Log("Celular Robado D:");
             GameManager.phoneStolen = true;
             Destroy(gameObject);
+            GameManager.motivosRobo[0] = "(Cosquilleo)";
         }
         else
         {
-            Debug.Log("Intento de robo fallido");
+            //Debug.Log("Intento de robo fallido");
         }
     }
 }
