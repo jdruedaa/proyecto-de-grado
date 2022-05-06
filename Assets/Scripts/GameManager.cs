@@ -5,6 +5,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public static bool phoneStolen;
+    public static bool estaFrenado;
     public static bool intro;
     public static bool end;
     public static bool relaxed;
@@ -28,6 +29,7 @@ public class GameManager : MonoBehaviour
         end = false;
         relaxed = false;
         maletaDown = false;
+        estaFrenado = false;
         firstReaction = true;
         handSlider = false;
         itemsMaleta = new bool[5];
