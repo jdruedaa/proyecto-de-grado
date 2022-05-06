@@ -26,4 +26,9 @@ public class MainMenu : MonoBehaviour
     {
         SceneManager.LoadScene("Tienda Temp");
     }
+
+    public void Dificultad()
+    {
+        SceneManager.LoadScene("Select dificulty");
+    }
 }
