@@ -4,12 +4,11 @@ using UnityEngine;
 
 public class bgtrasform : MonoBehaviour
 {
-    public GameObject bus;
 
     public float altura;
     void FixedUpdate()
     {
-        if(!bus.GetComponent<UpAndDown>().estaFrenado) {
+        if(!GameManager.estaFrenado) {
             if (transform.position.x <= -69f)
             {
                 transform.position = new Vector3(80.6f, altura, 0f);

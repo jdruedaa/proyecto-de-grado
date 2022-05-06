@@ -7,37 +7,52 @@ using UnityEngine.SceneManagement;
 
 public class Store : MonoBehaviour
 {
+    public GameObject canvas;
+    public static bool upgradeScreen = true;
+    public static Text[] texts;
+    public static int[] preciosAct;
+    public Text title;
     public Text texto1;
     public Text texto2;
     //public Text texto3;
     //public Text texto4;
-    public int[] preciosCel = {2000,3500,5000};
+    //public int[] preciosCel = {2000,3500,5000};
     //public int[] preciosMaleta = {1500,2800,4100};
     //public int[] preciosEstres = {2500,4500,6500};
     
     // Start is called before the first frame update
     void Start()
     {
+        GameManager.accScore = 6000;
+        preciosAct = new int[3];
+        texts = new Text[2];
+        texts[0] = title;
+        texts[1] = texto2;
         texto1.text = "Tienes " + GameManager.accScore + " puntos";
         //Preferiría que en vez de copy paste a esto de abajo se haga un método general que asigne todos 
         //los text a la vez (esto es un método de "placeholder") (como en results)
-        int mejoraActualCel = GameManager.mejoras[0];
-        if(mejoraActualCel >= 3)
-        {
-            texto2.text = "Sold out";
-        }
-        else
-        {
-            texto2.text = "" + preciosCel[mejoraActualCel];
-        }
         //texto3.text = preciosCel[GameManager.mejoras[1]];
         //texto4.text = preciosCel[GameManager.mejoras[2]];
     }
 
     // Update is called once per frame
     void Update()
-    {
-        
+    {        
+        if(canvas.transform.position.x >=15.5f && upgradeScreen)
+        {
+            canvas.transform.position = new Vector3(16f,-1f,0f);
+        }
+        else if(upgradeScreen){
+            Vector3 movement = new Vector3(60f*Time.deltaTime, 0f, 0);
+            canvas.transform.Translate(movement);
+        }  
+        else if(canvas.transform.position.x <=0f && !upgradeScreen){
+            canvas.transform.position = new Vector3(0f,-1f,0f);
+        }
+        else if(!upgradeScreen){
+            Vector3 movement = new Vector3(-60f*Time.deltaTime, 0f, 0);
+            canvas.transform.Translate(movement);
+        }  
     }
 
     public void mejorarCelular()
@@ -46,7 +61,7 @@ public class Store : MonoBehaviour
         int puntajeActual = GameManager.accScore;
         if(mejoraActual <= 2)
         {
-            int precioMejora = preciosCel[mejoraActual];
+            int precioMejora = preciosAct[mejoraActual];
             if(puntajeActual >= precioMejora)
             {
                 mejoraActual ++;
@@ -59,9 +74,16 @@ public class Store : MonoBehaviour
                 }
                 else
                 {
-                    texto2.text = "" + preciosCel[GameManager.mejoras[0]];
+                    texto2.text = "$" + preciosAct[GameManager.mejoras[0]];
                 }
             }
+        }
+    }
+
+    public void noMejorar()
+    {
+        if(!upgradeScreen){
+            upgradeScreen = true;
         }
     }
 
