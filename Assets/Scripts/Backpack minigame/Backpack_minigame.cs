@@ -38,7 +38,16 @@ public class Backpack_minigame : MonoBehaviour
         }
         timeStart = CharacterScript.charact.gameObject.transform.GetChild(4).GetComponent<MaletaScript>().timeStart;
         timerIsRunning = true;
-        restante = 50f - ((5-contadorItems)*4) - (Time.time - timeStart);
+        float duration = 40f;
+        if(GameManager.dificultad == 0)
+        {
+            duration += 10f;
+        }
+        else if(GameManager.dificultad == 2)
+        {
+            duration -= 20f;
+        }
+        restante = duration - ((5-contadorItems)*4) - (Time.time - timeStart);
         //colliderMaleta = GetComponent<CapsuleCollider2D>();
         /*cuando hagamos posiciones random debe instanciar
         //items = GameManager.itemsMaleta();

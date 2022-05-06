@@ -19,6 +19,8 @@ public class GameManager : MonoBehaviour
     public static string[] motivosRobo;
     public static int accScore = 0;
     public static float totalItems = 5f;
+    //dificultad : 0 -> fácil, 1 -> medio (juego base), 2 -> difícil
+    public static int dificultad = 1;
 
     void Start()
     {

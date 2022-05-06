@@ -178,13 +178,31 @@ public class Phone_minigame : MonoBehaviour
     {
         StartCoroutine(WaitMove(15));
         float[] sped = {2f,1.5f,1.25f,1f};
-        Movement(3,sped[GameManager.mejoras[0]]);
+        float speedMod = 0f;
+        if(GameManager.dificultad == 0)
+        {
+            speedMod = -1f;
+        }
+        else if(GameManager.dificultad == 2)
+        {
+            speedMod = 1f;
+        }
+        Movement(3,sped[GameManager.mejoras[0]] + speedMod);
     }
 
     void Vibration()
     {
         if(!hand && !holding && !targetReached){
             StartCoroutine(WaitVib(2));
+        }
+        float speed = 1f;
+        if(GameManager.dificultad == 0)
+        {
+            speed -= 0.5f;
+        }
+        else if(GameManager.dificultad == 2)
+        {
+            speed += 0.5f;
         }
         Movement(1,1f);
     }
