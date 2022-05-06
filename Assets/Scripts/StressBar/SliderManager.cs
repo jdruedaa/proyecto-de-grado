@@ -65,17 +65,23 @@ public class SliderManager : MonoBehaviour
         {
             float t = 0.5f;
             float relaxedMod = -0.8f;
+            float phoneAdd = 0.45f;
+            float itemsMod = 0.16f;
             if(GameManager.dificultad == 0)
             {
                 t = 0.3f;
                 relaxedMod = -1f;
+                phoneAdd = 0.47f;
+                itemsMod = 0.18f;
             }
             else if(GameManager.dificultad == 2)
             {
                 t = 1f;
-                relaxedMod = -0.6f;
+                relaxedMod = -0.7f;
+                phoneAdd = 0.43f;
+                itemsMod = 0.17f;
             }
-            t = t + (GameManager.handSlider? 1f: 0f) + (GameManager.relaxed? (GameManager.totalItems*0.16f+(GameManager.phoneStolen?0f:0.45f))*relaxedMod: 0f);
+            t = t + (GameManager.handSlider? 1f: 0f) + ((GameManager.totalItems*itemsMod)+(GameManager.phoneStolen?0f:phoneAdd))*(GameManager.relaxed?relaxedMod: 0f);
             moveSlider(t * Time.deltaTime);
         }
         if(value >= 50f && !active){
