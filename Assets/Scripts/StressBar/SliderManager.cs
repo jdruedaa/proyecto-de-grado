@@ -59,6 +59,12 @@ public class SliderManager : MonoBehaviour
         song.Play();
     }
 
+    public void chocolate()
+    {
+        float t = -15f;
+        moveSlider(t * Time.deltaTime);
+    }
+
     void FixedUpdate()
     {
         if(!GameManager.intro && !GameManager.end)

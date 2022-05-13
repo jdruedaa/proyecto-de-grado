@@ -16,6 +16,8 @@ public class GameManager : MonoBehaviour
     public static bool[] itemsMaleta;
     //mejoras[0] -> nivel celular, [1] -> nivel maleta, [2] -> nivel x
     public static int[] mejoras = {0,0,0};
+    //consumibles[0] -> número de chocolates, [1] -> número de x
+    public static int[] consumibles = {0,0};
     public static string[] motivosRobo;
     public static int accScore = 0;
     public static float totalItems = 5f;

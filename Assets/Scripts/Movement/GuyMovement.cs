@@ -26,8 +26,13 @@ public class GuyMovement : MonoBehaviour
         if (!GameManager.intro && t2 > 29f && t2 < 30f && !GameManager.maletaDown)
         {
             //Debug.Log("drop at " + Time.time);
-            this.GetComponent<SpriteRenderer>().sprite = sinMaleta;
-            mlta.drop();
+            float chance = 100;
+            chance -= 10 * GameManager.mejoras[1];
+            if(Random.Range(0,100) <= chance)
+            {
+                this.GetComponent<SpriteRenderer>().sprite = sinMaleta;
+                mlta.drop();
+            }
         }
         if (transform.position.x >=-0.0f && b)
         {
