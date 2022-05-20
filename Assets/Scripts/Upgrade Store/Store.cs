@@ -14,6 +14,8 @@ public class Store : MonoBehaviour
     public Text title;
     public Text texto1;
     public Text texto2;
+
+    public static int actualId = 0;
     //public Text texto3;
     //public Text texto4;
     //public int[] preciosCel = {2000,3500,5000};
@@ -55,9 +57,16 @@ public class Store : MonoBehaviour
         }  
     }
 
-    public void mejorarCelular()
+    public void mejorar()
     {
-        int mejoraActual = GameManager.mejoras[0];
+        int mejoraActual = 3;
+        if(actualId < 3){
+            mejoraActual = GameManager.mejoras[actualId];
+        } else if(actualId < 5){
+            mejoraActual = GameManager.consumibles[actualId-3];
+        } else{
+            //coofee
+        }
         int puntajeActual = GameManager.accScore;
         if(mejoraActual <= 2)
         {
@@ -65,7 +74,13 @@ public class Store : MonoBehaviour
             if(puntajeActual >= precioMejora)
             {
                 mejoraActual ++;
-                GameManager.mejoras[0] = mejoraActual;
+                if(actualId < 3){
+                    GameManager.mejoras[actualId] = mejoraActual;
+                } else if(actualId < 5){
+                    GameManager.consumibles[actualId-3] = mejoraActual;
+                } else{
+                    //coofee
+                }
                 GameManager.accScore = puntajeActual - precioMejora;
                 texto1.text = "Tienes " + GameManager.accScore + " puntos";
                 if(mejoraActual >= 3)
