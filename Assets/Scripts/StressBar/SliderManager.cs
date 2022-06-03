@@ -35,21 +35,8 @@ public class SliderManager : MonoBehaviour
         }
         if(sl.value >= 100)
         {
-            GameManager.end = true;
-            SceneManager.LoadScene("Game Over");
-            var go = new GameObject("first");
-            DontDestroyOnLoad(go);
-            foreach(var root in go.scene.GetRootGameObjects())
-            {
-                if(root.tag == "Admin")
-                {
-
-                }
-                else
-                {
-                    Destroy(root);
-                }
-            }
+            GameManager.gameOverReason = "Tu nivel de estrés llegó al máximo y te bajaste del bus antes de tu destino.";
+            GameManager.GameOver();
         }
     }
 

@@ -23,6 +23,7 @@ public class GameManager : MonoBehaviour
     public static float totalItems = 5f;
     //dificultad : 0 -> fácil, 1 -> medio (juego base), 2 -> difícil
     public static int dificultad = 1;
+    public static string gameOverReason = "";
 
     void Start()
     {
@@ -59,6 +60,25 @@ public class GameManager : MonoBehaviour
         else 
         { 
             Destroy(gameObject);
+        }
+    }
+
+    public void GameOver()
+    {
+        end = true;
+        SceneManager.LoadScene("Game Over");
+        var go = new GameObject("first");
+        DontDestroyOnLoad(go);
+        foreach(var root in go.scene.GetRootGameObjects())
+        {
+            if(root.tag == "Admin")
+            {
+
+            }
+            else
+            {
+                Destroy(root);
+            }
         }
     }
 

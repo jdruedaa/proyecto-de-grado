@@ -105,6 +105,11 @@ public class Backpack_minigame : MonoBehaviour
                 contadorItems--;
                 GameManager.totalItems--;
             }
+            if(GameManager.totalItems < (Mathf.Ceil(itemsVivos.Length/2)))
+            {
+                GameManager.gameOverReason = "Se perdieron 4 o más objetos de la maleta.";
+                GameManager.GameOver();
+            }
             BackToBus();
         }
         //else if timer acabado BadEnd(); BackToBus();

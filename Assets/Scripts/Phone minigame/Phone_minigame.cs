@@ -243,6 +243,8 @@ public class Phone_minigame : MonoBehaviour
             GameManager.phoneStolen = true;
             Destroy(gameObject);
             GameManager.motivosRobo[0] = "(Cosquilleo)";
+            GameManager.gameOverReason = "Tu celular fue robado por cosquilleo.";
+            GameManager.GameOver();
         }
         else
         {
