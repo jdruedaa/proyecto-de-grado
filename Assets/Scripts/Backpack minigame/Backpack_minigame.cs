@@ -68,7 +68,7 @@ public class Backpack_minigame : MonoBehaviour
             }
             else
             {
-                Debug.Log("Time has run out!");
+                //Debug.Log("Time has run out!");
                 restante = 0;
                 timerIsRunning = false;
             }
@@ -83,7 +83,7 @@ public class Backpack_minigame : MonoBehaviour
 
         if(contadorItems <= 0) 
         {
-            Debug.Log("no items");
+            //Debug.Log("no items");
             BackToBus();
         }
         else if(!timerIsRunning)

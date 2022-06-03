@@ -29,6 +29,7 @@ public class Phone_minigame : MonoBehaviour
         target = new Vector2(92.1f,-40.3f);
         position = gameObject.transform.position;
         hand = false;
+        GameManager.handSlider = hand;
         holding = false;
         canGrab = true;
         act = true;
@@ -63,8 +64,8 @@ public class Phone_minigame : MonoBehaviour
         {
             if(Time.time >= stealAttemptTime)
             {
-                Debug.Log(Time.time);
-                Debug.Log("steal attempt:" + stealAttemptTime);
+                //Debug.Log(Time.time);
+                //Debug.Log("steal attempt:" + stealAttemptTime);
                 StealAttempt();
                 stealAttemptTime = Time.time + 5f;
             }
@@ -100,7 +101,7 @@ public class Phone_minigame : MonoBehaviour
             {
                 stealAttemptTime = Time.time + 10f;
                 steal = true;
-                Debug.Log("Robable");
+                //Debug.Log("Robable");
             }
             targetReached = true;
         }
@@ -116,14 +117,14 @@ public class Phone_minigame : MonoBehaviour
                 {
                     stealAttemptTime = Time.time + 5f;
                     steal = true;
-                    Debug.Log("Robable");
+                    //Debug.Log("Robable");
                 }
             }
             else
             {
                 stealAttemptTime = Time.time + 5f;
                 steal = false;
-                Debug.Log("No Robable");
+                //Debug.Log("No Robable");
             }
         }
     }
@@ -134,7 +135,7 @@ public class Phone_minigame : MonoBehaviour
         {
             stealAttemptTime = Time.time + 5f;
             steal = false;
-            Debug.Log("No Robable");
+            //Debug.Log("No Robable");
             targetReached = false;
         }
     }
@@ -147,6 +148,7 @@ public class Phone_minigame : MonoBehaviour
             if(canGrab)
             {
                 hand = false;
+                GameManager.handSlider = hand;
                 holding = true;
                 Vector3 mousePos = Input.mousePosition;
                 mousePos.z = Camera.main.nearClipPlane;
@@ -237,14 +239,14 @@ public class Phone_minigame : MonoBehaviour
     {
         if(Random.Range(0,100) <= 60)
         {
-            Debug.Log("Celular Robado D:");
+            //Debug.Log("Celular Robado D:");
             GameManager.phoneStolen = true;
             Destroy(gameObject);
             GameManager.motivosRobo[0] = "(Cosquilleo)";
         }
         else
         {
-            Debug.Log("Intento de robo fallido");
+            //Debug.Log("Intento de robo fallido");
         }
     }
 }
