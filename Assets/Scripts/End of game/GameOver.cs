@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameOver : MonoBehaviour
 {
@@ -18,9 +19,24 @@ public class GameOver : MonoBehaviour
         
     }
 
-    public void ReiniciarJuego()
+    public void Reiniciar()
     {
         GameManager.instance.Reset();
         SceneManager.LoadScene("Main menu");
+    }
+
+    public void NextLevel()
+    {
+        if(GameManager.level == GameManager.lastLevel)
+        {
+            GameManager.instance.Reset();
+            SceneManager.LoadScene("Main menu");
+        }
+        else
+        {
+            GameManager.instance.Reset();
+            GameManager.level += 1;
+            SceneManager.LoadScene("Main menu");
+        }
     }
 }

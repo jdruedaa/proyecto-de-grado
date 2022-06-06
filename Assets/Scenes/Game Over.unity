@@ -574,6 +574,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ecebeacfeea45c24bbf55a2127dc7a05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  texto1: {fileID: 371137293}
 --- !u!4 &1597907244
 Transform:
   m_ObjectHideFlags: 0
@@ -775,7 +776,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1597907243}
         m_TargetAssemblyTypeName: GameOver, Assembly-CSharp
-        m_MethodName: ReiniciarJuego
+        m_MethodName: Reiniciar
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

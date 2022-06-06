@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -24,6 +25,8 @@ public class GameManager : MonoBehaviour
     //dificultad : 0 -> fácil, 1 -> medio (juego base), 2 -> difícil
     public static int dificultad = 1;
     public static string gameOverReason = "";
+    public static int level = 1;
+    public static int lastLevel = 3;
 
     void Start()
     {
@@ -63,7 +66,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void GameOver()
+    public static void GameOver()
     {
         end = true;
         SceneManager.LoadScene("Game Over");
