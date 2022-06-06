@@ -23,15 +23,18 @@ public class GuyMovement : MonoBehaviour
     void FixedUpdate()
     {
         float t2 = (Time.time - tiempo) % 30f;
-        if (!GameManager.intro && t2 > 29f && t2 < 30f && !GameManager.maletaDown)
+        if(GameManager.level > 1)
         {
-            //Debug.Log("drop at " + Time.time);
-            float chance = 100;
-            chance -= 10 * GameManager.mejoras[1];
-            if(Random.Range(0,100) <= chance)
+            if (!GameManager.intro && t2 > 29f && t2 < 30f && !GameManager.maletaDown)
             {
-                this.GetComponent<SpriteRenderer>().sprite = sinMaleta;
-                mlta.drop();
+                //Debug.Log("drop at " + Time.time);
+                float chance = 100;
+                chance -= 10 * GameManager.mejoras[1];
+                if(Random.Range(0,100) <= chance)
+                {
+                    this.GetComponent<SpriteRenderer>().sprite = sinMaleta;
+                    mlta.drop();
+                }
             }
         }
         if (transform.position.x >=-0.0f && b)

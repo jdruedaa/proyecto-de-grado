@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -23,6 +24,9 @@ public class GameManager : MonoBehaviour
     public static float totalItems = 5f;
     //dificultad : 0 -> fácil, 1 -> medio (juego base), 2 -> difícil
     public static int dificultad = 1;
+    public static string gameOverReason = "";
+    public static int level = 1;
+    public static int lastLevel = 3;
 
     void Start()
     {
@@ -59,6 +63,25 @@ public class GameManager : MonoBehaviour
         else 
         { 
             Destroy(gameObject);
+        }
+    }
+
+    public static void GameOver()
+    {
+        end = true;
+        SceneManager.LoadScene("Game Over");
+        var go = new GameObject("first");
+        DontDestroyOnLoad(go);
+        foreach(var root in go.scene.GetRootGameObjects())
+        {
+            if(root.tag == "Admin")
+            {
+
+            }
+            else
+            {
+                Destroy(root);
+            }
         }
     }
 
