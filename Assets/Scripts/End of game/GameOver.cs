@@ -30,6 +30,7 @@ public class GameOver : MonoBehaviour
         if(GameManager.level == GameManager.lastLevel)
         {
             GameManager.instance.Reset();
+            GameManager.level = 1;
             SceneManager.LoadScene("Main menu");
         }
         else
