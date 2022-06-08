@@ -10,7 +10,11 @@ public class GameOver : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        texto1.text = GameManager.gameOverReason;
+        Scene currentScene = SceneManager.GetActiveScene();
+        if(currentScene.name == "Game Over")
+        {
+            texto1.text = GameManager.gameOverReason;
+        }
     }
 
     // Update is called once per frame

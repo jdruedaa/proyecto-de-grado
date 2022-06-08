@@ -35,7 +35,7 @@ public class SliderManager : MonoBehaviour
         }
         if(sl.value >= 100)
         {
-            GameManager.gameOverReason = "Tu nivel de estrés llegó al máximo y te bajaste del bus antes de tu destino.";
+            GameManager.gameOverReason = "Tu nivel de estrés llegó al máximo y te bajaste antes de tu destino.";
             GameManager.GameOver();
         }
     }
@@ -70,7 +70,7 @@ public class SliderManager : MonoBehaviour
             else if(GameManager.dificultad == 2)
             {
                 t = 1f;
-                relaxedMod = -0.7f;
+                relaxedMod = -0.6f;
                 //phoneAdd = 0.43f;
                 itemsMod = 0.17f;
             }
@@ -78,9 +78,13 @@ public class SliderManager : MonoBehaviour
             {
                 t += 0.5f;
                 relaxedMod += 0.2f;
+                t = (GameManager.handSlider? 1f: 0f) + (GameManager.relaxed? t * relaxedMod: t);
+            }
+            else
+            {
+                t = (GameManager.handSlider? 1f: 0f) + (GameManager.relaxed? ((GameManager.totalItems*itemsMod)+t) * relaxedMod: t);
             }
             //t = t + (GameManager.handSlider? 1f: 0f) + ((GameManager.totalItems*itemsMod)+(GameManager.phoneStolen?0f:phoneAdd))*(GameManager.relaxed?relaxedMod: 0f);
-            t = t + (GameManager.handSlider? 1f: 0f) + ((GameManager.totalItems*itemsMod))*(GameManager.relaxed?relaxedMod: 0f);
             moveSlider(t * Time.deltaTime);
         }
         if(value >= 50f && !active){
