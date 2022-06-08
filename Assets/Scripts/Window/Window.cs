@@ -39,7 +39,7 @@ public class Window : MonoBehaviour
 
     void OnMouseDown()
     {
-        if(!GameManager.intro)
+        if(!GameManager.intro && !GameManager.tutorialCel)
         {
             GameManager.relaxed = true;
             SceneManager.LoadScene("Window scene");

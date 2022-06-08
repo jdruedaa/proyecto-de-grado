@@ -300,7 +300,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 839554073}
         m_TargetAssemblyTypeName: GameOver, Assembly-CSharp
-        m_MethodName: ReiniciarJuego
+        m_MethodName: NextLevel
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -539,6 +539,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ecebeacfeea45c24bbf55a2127dc7a05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  texto1: {fileID: 0}
 --- !u!4 &839554074
 Transform:
   m_ObjectHideFlags: 0
@@ -875,7 +876,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Iniciar un nuevo viaje
+  m_Text: Siguiente nivel
 --- !u!222 &1772837713
 CanvasRenderer:
   m_ObjectHideFlags: 0
