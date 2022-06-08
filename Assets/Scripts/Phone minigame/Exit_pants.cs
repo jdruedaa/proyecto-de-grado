@@ -7,13 +7,25 @@ using UnityEngine.SceneManagement;
 public class Exit_pants : MonoBehaviour
 {
     public bool ready = false;
+    public GameObject phone_tutorial;
 
     // Start is called before the first frame update
     void Start()
     {
+        if(GameManager.tutorialCel)
+        {
+            Time.timeScale = 1;
+            StartCoroutine(BeginTutorial());
+        }
         StartCoroutine(Waiting());
     }
 
+    IEnumerator BeginTutorial()
+    {
+        yield return new WaitForSeconds(1);
+        phone_tutorial.GetComponent<Phone_tutorial>().startTutorial();
+    }
+    
     IEnumerator Waiting()
     {
         yield return new WaitForSeconds(1);
@@ -32,7 +44,7 @@ public class Exit_pants : MonoBehaviour
     //If your mouse hovers over the GameObject with the script attached, output this message
     void OnMouseOver()
     {
-        if(ready){
+        if(ready && !GameManager.tutorialCel){
             ready = false;
             if(GameManager.phoneStolen && GameManager.firstReaction)
             {

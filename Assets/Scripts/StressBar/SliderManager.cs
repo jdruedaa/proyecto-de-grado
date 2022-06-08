@@ -16,21 +16,51 @@ public class SliderManager : MonoBehaviour
     public Slider sl;
     public Text texto;
     public float timer;
-    public float prevTime;
+    public bool win = false;
+    public float startingTime;
+    public static float prevTime = -1f;
 
     void Start()
     {
         sl = slider.GetComponent<Slider>();
         timer = 0;
-        prevTime = Time.time;
         song.Play();
         active = false;
+        win = false;
     }
     public void moveSlider(float f)
     {
-        value += f;
+        if(GameManager.tutorialVent || GameManager.intro)
+        {
+            if(value + f > 30)
+            {
+                value = 30;
+            }
+            else
+            {
+                value += f;
+            }
+        }
+        else
+        {
+            value += f;
+        }
         if(sl != null){
-            sl.value += f;
+            if(GameManager.tutorialVent || GameManager.intro)
+            {
+                if(sl.value + f > 30)
+                {
+                    sl.value = 30;
+                }
+                else
+                {
+                    sl.value += f;
+                }
+            }
+            else
+            {
+                sl.value += f;
+            }
             texto.text = string.Format("Nivel de estrés {0}/100", Mathf.Floor(sl.value));
         }
         if(sl.value >= 100)
@@ -50,6 +80,11 @@ public class SliderManager : MonoBehaviour
     {
         float t = -15f;
         moveSlider(t * Time.deltaTime);
+    }
+
+    public static void StartTime()
+    {
+        prevTime = Time.time;
     }
 
     void FixedUpdate()
@@ -76,7 +111,7 @@ public class SliderManager : MonoBehaviour
             }
             if(GameManager.level == 1)
             {
-                t += 0.5f;
+                t += 0.8f;
                 relaxedMod += 0.2f;
                 t = (GameManager.handSlider? 1f: 0f) + (GameManager.relaxed? t * relaxedMod: t);
             }
@@ -92,22 +127,26 @@ public class SliderManager : MonoBehaviour
             active = true;
         }
         float currentTime = Time.time;
-        timer = currentTime - prevTime;
-        if((GameManager.level == 1 && timer >= 150f)||(GameManager.level >1 && timer >= 300f))
+        if(prevTime != -1f)
         {
-            GameManager.end = true;
-            SceneManager.LoadScene("Results");
-            var go = new GameObject("first");
-            DontDestroyOnLoad(go);
-            foreach(var root in go.scene.GetRootGameObjects())
+            startingTime = prevTime;
+            timer = currentTime - startingTime;
+            if((GameManager.level == 1 && timer >= 130f)||(GameManager.level >1 && timer >= 300f)||win)
             {
-                if(root.tag == "Admin")
+                GameManager.end = true;
+                SceneManager.LoadScene("Results");
+                var go = new GameObject("first");
+                DontDestroyOnLoad(go);
+                foreach(var root in go.scene.GetRootGameObjects())
                 {
+                    if(root.tag == "Admin")
+                    {
 
-                }
-                else
-                {
-                    Destroy(root);
+                    }
+                    else
+                    {
+                        Destroy(root);
+                    }
                 }
             }
         }
