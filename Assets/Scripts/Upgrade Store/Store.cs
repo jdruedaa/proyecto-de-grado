@@ -25,7 +25,6 @@ public class Store : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        GameManager.accScore = 6000;
         preciosAct = new int[3];
         texts = new Text[2];
         texts[0] = title;

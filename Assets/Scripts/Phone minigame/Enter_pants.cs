@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 public class Enter_pants : MonoBehaviour
 {
     public bool ready = false;
+    public GameObject tutorial;
 
     // Start is called before the first frame update
     void Start()
@@ -35,15 +36,21 @@ public class Enter_pants : MonoBehaviour
                 child.gameObject.transform.GetChild(4).GetComponent<SpriteRenderer>().enabled = true;
             }*/
         }
+        if((!GameManager.tutorialCel && GameManager.tutorialVent) || (!GameManager.tutorialVent && GameManager.intro))
+        {
+            Debug.Log("Fue enter pants");
+            tutorial.gameObject.SetActive(true);
+        }
     }
 
     //If your mouse hovers over the GameObject with the script attached, output this message
     void OnMouseOver()
     {
-        if(ready && !GameManager.intro){
+        if(ready && !GameManager.intro && !(!GameManager.tutorialCel && GameManager.tutorialVent)){
             ready = false;
             SceneManager.LoadScene("Practice scene");
             Phone_minigame.main_phone.act = true;
+            Phone_minigame.main_phone.canGrab = true;
         }
     }
 }
