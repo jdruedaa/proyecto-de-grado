@@ -35,21 +35,8 @@ public class SliderManager : MonoBehaviour
         }
         if(sl.value >= 100)
         {
-            GameManager.end = true;
-            SceneManager.LoadScene("Game Over");
-            var go = new GameObject("first");
-            DontDestroyOnLoad(go);
-            foreach(var root in go.scene.GetRootGameObjects())
-            {
-                if(root.tag == "Admin")
-                {
-
-                }
-                else
-                {
-                    Destroy(root);
-                }
-            }
+            GameManager.gameOverReason = "Tu nivel de estrés llegó al máximo y te bajaste del bus antes de tu destino.";
+            GameManager.GameOver();
         }
     }
 
@@ -59,12 +46,41 @@ public class SliderManager : MonoBehaviour
         song.Play();
     }
 
+    public void chocolate()
+    {
+        float t = -15f;
+        moveSlider(t * Time.deltaTime);
+    }
+
     void FixedUpdate()
     {
         if(!GameManager.intro && !GameManager.end)
         {
-            float t = GameManager.handSlider? 1.5f: 0.5f;
-            t = t + (GameManager.relaxed? (GameManager.totalItems*0.16f+(GameManager.phoneStolen?0f:0.45f))*-1f: 0f);
+            float t = 0.5f;
+            float relaxedMod = -0.8f;
+            //float phoneAdd = 0.45f;
+            float itemsMod = 0.16f;
+            if(GameManager.dificultad == 0)
+            {
+                t = 0.3f;
+                relaxedMod = -1f;
+                //phoneAdd = 0.47f;
+                itemsMod = 0.18f;
+            }
+            else if(GameManager.dificultad == 2)
+            {
+                t = 1f;
+                relaxedMod = -0.7f;
+                //phoneAdd = 0.43f;
+                itemsMod = 0.17f;
+            }
+            if(GameManager.level == 1)
+            {
+                t += 0.5f;
+                relaxedMod += 0.2f;
+            }
+            //t = t + (GameManager.handSlider? 1f: 0f) + ((GameManager.totalItems*itemsMod)+(GameManager.phoneStolen?0f:phoneAdd))*(GameManager.relaxed?relaxedMod: 0f);
+            t = t + (GameManager.handSlider? 1f: 0f) + ((GameManager.totalItems*itemsMod))*(GameManager.relaxed?relaxedMod: 0f);
             moveSlider(t * Time.deltaTime);
         }
         if(value >= 50f && !active){
@@ -73,7 +89,7 @@ public class SliderManager : MonoBehaviour
         }
         float currentTime = Time.time;
         timer = currentTime - prevTime;
-        if(timer >= 300f)
+        if((GameManager.level == 1 && timer >= 150f)||(GameManager.level >1 && timer >= 300f))
         {
             GameManager.end = true;
             SceneManager.LoadScene("Results");

@@ -29,6 +29,7 @@ public class Phone_minigame : MonoBehaviour
         target = new Vector2(92.1f,-40.3f);
         position = gameObject.transform.position;
         hand = false;
+        GameManager.handSlider = hand;
         holding = false;
         canGrab = true;
         act = true;
@@ -147,6 +148,7 @@ public class Phone_minigame : MonoBehaviour
             if(canGrab)
             {
                 hand = false;
+                GameManager.handSlider = hand;
                 holding = true;
                 Vector3 mousePos = Input.mousePosition;
                 mousePos.z = Camera.main.nearClipPlane;
@@ -175,7 +177,17 @@ public class Phone_minigame : MonoBehaviour
     void Trans_movement()
     {
         StartCoroutine(WaitMove(15));
-        Movement(3,2);
+        float[] sped = {2f,1.5f,1.25f,1f};
+        float speedMod = 0f;
+        if(GameManager.dificultad == 0)
+        {
+            speedMod = -1f;
+        }
+        else if(GameManager.dificultad == 2)
+        {
+            speedMod = 1f;
+        }
+        Movement(3,sped[GameManager.mejoras[0]] + speedMod);
     }
 
     void Vibration()
@@ -183,15 +195,24 @@ public class Phone_minigame : MonoBehaviour
         if(!hand && !holding && !targetReached){
             StartCoroutine(WaitVib(2));
         }
-        Movement(1,1);
+        float speed = 1f;
+        if(GameManager.dificultad == 0)
+        {
+            speed -= 0.5f;
+        }
+        else if(GameManager.dificultad == 2)
+        {
+            speed += 0.5f;
+        }
+        Movement(1,1f);
     }
 
-    public void Movement(int time, int sped)
+    public void Movement(int time, float sped)
     {
         StartCoroutine(Waiting(time,sped));
     }    
 
-    IEnumerator Waiting(int time, int sped)
+    IEnumerator Waiting(int time, float sped)
     {
         if(!hand && !GameManager.intro){
             yield return new WaitUntil(() => movement == false);
@@ -222,6 +243,8 @@ public class Phone_minigame : MonoBehaviour
             GameManager.phoneStolen = true;
             Destroy(gameObject);
             GameManager.motivosRobo[0] = "(Cosquilleo)";
+            GameManager.gameOverReason = "Tu celular fue robado por cosquilleo.";
+            GameManager.GameOver();
         }
         else
         {
