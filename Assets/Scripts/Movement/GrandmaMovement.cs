@@ -34,7 +34,7 @@ public class GrandmaMovement : MonoBehaviour
             }
             else if(GameManager.level == 2)
             {
-                if (textoTuto != null && !textoTuto.activeSelf && GameManager.tutorialMochila)
+                if (textoTuto != null && !textoTuto.activeSelf && GameManager.tutorialMaleta)
                 {
                     textoTuto.SetActive(true);
                 }
