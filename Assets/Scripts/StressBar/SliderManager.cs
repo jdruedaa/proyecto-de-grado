@@ -84,7 +84,10 @@ public class SliderManager : MonoBehaviour
 
     public static void StartTime()
     {
-        prevTime = Time.time;
+        if(prevTime == -1)
+        {
+            prevTime = Time.time;
+        }
     }
 
     void FixedUpdate()
