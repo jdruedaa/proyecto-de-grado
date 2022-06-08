@@ -14,6 +14,11 @@ public class Window_leave : MonoBehaviour
 
     void OnMouseDown()
     {
+        if(GameManager.tutorialVent)
+        {
+            GameManager.tutorialVent = false;
+            GameManager.intro = true;
+        }
         GameManager.relaxed = false;
         SceneManager.LoadScene("test scene");
     }

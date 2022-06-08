@@ -8,6 +8,9 @@ public class GameManager : MonoBehaviour
     public static bool phoneStolen;
     public static bool estaFrenado;
     public static bool intro;
+    public static bool tutorialCel = false;
+    public static bool tutorialVent = false;
+    public static bool tutorialMaleta = false;
     public static bool end;
     public static bool relaxed;
     public static bool maletaDown;
@@ -31,7 +34,17 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         phoneStolen = false;
-        intro = true;
+        if(level == 1)
+        {
+            tutorialCel = true;
+            tutorialVent = true;
+            intro = true;
+        }
+        else if(level == 2)
+        {
+            //cambiar a true cuando esté el tutorial de la maleta
+            tutorialMaleta = false;
+        }
         end = false;
         relaxed = false;
         maletaDown = false;

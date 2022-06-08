@@ -22,12 +22,18 @@ public class Upgrade_window : MonoBehaviour
 
     void OnMouseDown()
     {
-        Store.preciosAct = precios;
         if(Store.upgradeScreen){
-            Store.actualId = mejoraRef;
             Store.preciosAct = precios;
+            Store.actualId = mejoraRef;
             Store.texts[0].text = "Upgrade " + name;
-            int mejoraActualCel = GameManager.mejoras[0];
+            int mejoraActualCel = 3;
+            if(mejoraRef < 3){
+                mejoraActualCel = GameManager.mejoras[mejoraRef];
+            } else if(mejoraRef < 5){
+                mejoraActualCel = GameManager.consumibles[mejoraRef-3];
+            } else{
+                //coofee
+            }
             if(mejoraActualCel >= 3)
             {
                 Store.texts[1].text = "Sold out";

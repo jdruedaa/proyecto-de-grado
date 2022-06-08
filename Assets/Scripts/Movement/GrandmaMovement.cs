@@ -5,7 +5,7 @@ using UnityEngine;
 public class GrandmaMovement : MonoBehaviour
 {
     public Sprite newSprite;
-    public Canvas textoTuto;
+    public GameObject textoTuto;
 
 
     // Start is called before the first frame update
@@ -25,9 +25,23 @@ public class GrandmaMovement : MonoBehaviour
         else
         {
             this.GetComponent<Animator>().enabled = false;
-            if (textoTuto!=null)
+            if(GameManager.level == 1)
             {
-                textoTuto.gameObject.SetActive(true);
+                if (textoTuto != null && !textoTuto.activeSelf && (GameManager.tutorialCel || GameManager.tutorialVent || GameManager.intro))
+                {
+                    textoTuto.SetActive(true);
+                }
+            }
+            else if(GameManager.level == 2)
+            {
+                if (textoTuto != null && !textoTuto.activeSelf && GameManager.tutorialMaleta)
+                {
+                    textoTuto.SetActive(true);
+                }
+            }
+            else
+            {
+                
             }
         }
     }

@@ -8,7 +8,9 @@ public class Phone_minigame : MonoBehaviour
 {
     public bool movement;
     public Vector2 target;
+    public Vector2 targetTuto;
     public float speed = 0.1f;
+    public float speedTuto;
     public Vector2 position;
     public bool hand;
     public bool holding;
@@ -24,9 +26,18 @@ public class Phone_minigame : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        transform.position = new Vector2(104.1f,-40.3f);
+        if(GameManager.level == 1)
+        {
+            transform.position = new Vector2(98.85f,-40.3f);
+        }
+        else
+        {
+            transform.position = new Vector2(104.1f,-40.3f);
+        }
         movement = false;
         target = new Vector2(92.1f,-40.3f);
+        speedTuto = 1.1f;
+        targetTuto = new Vector2(95.85f,-40.3f);
         position = gameObject.transform.position;
         hand = false;
         GameManager.handSlider = hand;
@@ -48,6 +59,11 @@ public class Phone_minigame : MonoBehaviour
         Scene currentScene = SceneManager.GetActiveScene();
         if(currentScene.name == "Practice scene")
         {
+            if(GameManager.tutorialCel)
+            {
+                float step = speedTuto * Time.deltaTime;
+                transform.position = Vector2.MoveTowards(transform.position, targetTuto, step);
+            }
             if(Input.GetMouseButtonDown(1))
             {
                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -60,7 +76,7 @@ public class Phone_minigame : MonoBehaviour
                 }
             }
         }
-        if(steal)
+        if(steal && !GameManager.tutorialCel && !GameManager.tutorialVent)
         {
             if(Time.time >= stealAttemptTime)
             {
@@ -97,7 +113,7 @@ public class Phone_minigame : MonoBehaviour
     {
         if(col.gameObject.tag == "Pants")
         {
-            if(!hand && !holding)
+            if(!hand && !holding && !GameManager.tutorialCel)
             {
                 stealAttemptTime = Time.time + 10f;
                 steal = true;
@@ -214,7 +230,7 @@ public class Phone_minigame : MonoBehaviour
 
     IEnumerator Waiting(int time, float sped)
     {
-        if(!hand && !GameManager.intro){
+        if(!hand && !GameManager.tutorialCel && !GameManager.tutorialVent && !GameManager.intro){
             yield return new WaitUntil(() => movement == false);
             movement = true;
             this.speed = sped;
