@@ -38,7 +38,6 @@ public class Enter_pants : MonoBehaviour
         }
         if((!GameManager.tutorialCel && GameManager.tutorialVent) || (!GameManager.tutorialVent && GameManager.intro))
         {
-            Debug.Log("Fue enter pants");
             tutorial.gameObject.SetActive(true);
         }
     }

@@ -193,7 +193,17 @@ public class TextosTutorial : MonoBehaviour
     public void restart()
     {
         Time.timeScale = 0;
-        GameManager.intro = true;
+        if(GameManager.level == 1)
+        {
+            GameManager.intro = true;
+            GameManager.tutorialCel = true;
+            GameManager.tutorialVent = true;
+        }
+        else if(GameManager.level == 2)
+        {
+            //GameManager.tutorialMaleta = true;
+            GameManager.intro = true;
+        }
         Start();
         //continuar.GetComponent<Text>().text = "Siguiente";
         canvas.enabled = true;
