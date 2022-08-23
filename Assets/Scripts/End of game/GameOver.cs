@@ -39,8 +39,8 @@ public class GameOver : MonoBehaviour
         }
         else
         {
-            GameManager.instance.Reset();
             GameManager.level += 1;
+            GameManager.instance.Reset();
             SceneManager.LoadScene("Main menu");
         }
     }

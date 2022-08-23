@@ -37,14 +37,14 @@ public class TextosTutorial : MonoBehaviour
         textos[9] = "Puedes hacerle click de nuevo para quitar la mano así el aumento de estrés volverá a su ritmo normal";
         textos[10] = "Para salir del bolsillo vuelve a pasar el mouse por la barra azul en la parte inferior de la pantalla";
         textos[11] = "Durante el juego es posible que se caiga tu maleta, si esto pasa tienes que recoger tus cosas en un tiempo límite para evitar que sean robadas";
-        textos[12] = "Ten en cuenta que el tiempo empieza a contar apenas se caiga la maleta y eso puede ocurrir incluso si no la estás viendo";
+        textos[12] = "Ten en cuenta que el tiempo empieza a contar apenas se caiga la maleta y eso puede ocurrir incluso si no la estás viendo. Cuando tu maleta se caiga haz click sobre ella para empezar el minijuego";
         textos[13] = "Cuando tu maleta se caiga haz click sobre ella para empezar el minijuego";
         textos[14] = "Arrastra los objetos del suelo a la maleta para salvarlos y terminar el minijuego, cualquier objeto que no salves antes del tiempo límite se perderá";
         textos[15] = "Por último, puedes mirar por la ventana para reducir el estrés, para ello debes hacerle click a la ventana que está frente a tu personaje";
-        textos[16] = "Pero recuerda, aunque vaya bajando el estrés tus objetos siguen en riesgo, así que intenta no quedarte mucho tiempo viendo por la ventana";
-        textos[17] = "Ten en cuenta, que la efectividad de la ventana se vera reducida a medida que pierdas objetos";
-        textos[18] = "Preparate para la prueba de estres. Buena Suerte!";
-        if(GameManager.tutorialCel)
+        textos[16] = "Timer viejo";
+        textos[17] = "Ahora tu maleta podrá caerse, hazle click y recoge tus cosas rápido cuando pase.";
+        textos[18] = "Prepárate para la prueba de estres. Buena Suerte!";
+        if (GameManager.tutorialCel)
         {
             contador = -1;
         }
@@ -52,13 +52,17 @@ public class TextosTutorial : MonoBehaviour
         {
             contador = 1;
         }
-        else if(GameManager.intro)
+        else if(GameManager.intro && GameManager.level == 1)
         {
             contador = 2;
         }
-        else
+        else if(GameManager.tutorialMaleta)
         {
-            contador = 3;
+            contador = 4;
+        }
+        else 
+        {
+            contador = 5;
         }
         continuar.onClick.AddListener(cambiarTexto);
         saltar.onClick.AddListener(saltarTutorial);
@@ -79,6 +83,32 @@ public class TextosTutorial : MonoBehaviour
             Time.timeScale = 1;
             canvas.enabled = false;
             GameManager.intro = false;
+        }
+        else if (contador == 7)
+        {
+            GameManager.intro = false;
+            Time.timeScale = 1;
+            canvas.enabled = false;
+            SliderManager.StartTime();
+        }
+        else if (contador == 6)
+        {
+            continuar.gameObject.SetActive(true);
+            textoTutorial.text = textos[18];
+            cambioTitulo();
+        }
+        //else if(contador == textos.Length -1)
+        //{
+        //continuar.gameObject.GetComponent<Text>().text = "Jugar ->"; 
+        //    anterior.gameObject.SetActive(true);
+        //    textoTutorial.text = textos[contador];
+        //    this.cambioTitulo();
+        //}
+        else if (contador == 5)
+        {
+            continuar.gameObject.SetActive(true);
+            textoTutorial.text = textos[17];
+            cambioTitulo();
         }
         else if(contador == 4)
         {
@@ -145,14 +175,16 @@ public class TextosTutorial : MonoBehaviour
     }
 
     public void cambioTitulo(){
-        if(contador == 0){
+        if (contador == 0) {
             textoTitulo.text = "Tutorial - General";
-        }else if(contador == 1){
+        } else if (contador == 1) {
             textoTitulo.text = "Tutorial - Celular";
-        }else if(contador == 2){
+        } else if (contador == 2) {
             textoTitulo.text = "Tutorial - Ventana";
-        }else if(contador == 3) {
+        } else if (contador == 3) {
             textoTitulo.text = "Fin del Tutorial";
+        } else if (contador == 5) {
+            textoTitulo.text = "Tutorial Maleta";
         }else{
             textoTitulo.text = "Fin del Tutorial";
         }
@@ -201,12 +233,11 @@ public class TextosTutorial : MonoBehaviour
         }
         else if(GameManager.level == 2)
         {
-            //GameManager.tutorialMaleta = true;
+            GameManager.tutorialMaleta = true;
             GameManager.intro = true;
         }
         Start();
         //continuar.GetComponent<Text>().text = "Siguiente";
-        canvas.enabled = true;
     }
 
     //public void ventanaTuto()

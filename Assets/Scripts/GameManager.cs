@@ -43,7 +43,13 @@ public class GameManager : MonoBehaviour
         else if(level == 2)
         {
             //cambiar a true cuando esté el tutorial de la maleta
+            tutorialMaleta = true;
+            intro = true;
+        }
+        else
+        {
             tutorialMaleta = false;
+            intro = true;
         }
         end = false;
         relaxed = false;
